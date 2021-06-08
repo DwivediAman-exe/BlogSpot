@@ -4,7 +4,7 @@
   "description": "social app",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon gql-server.js"
+    "start": "nodemon server.js"
   },
   "keywords": [
     "social"
@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "apollo-server": "^2.25.0",
+    "apollo-server-express": "^2.25.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "graphql": "^15.5.0"
