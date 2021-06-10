@@ -1,7 +1,9 @@
-import { useState } from 'react';
 import ApolloClient from 'apollo-boost';
 import { gql } from 'apollo-boost';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useLazyQuery } from '@apollo/react-hooks';
+import { useContext } from 'react';
+import { AuthContext } from '../context/authContext';
+import { useHistory } from 'react-router-dom';
 
 const GET_ALL_POSTS = gql`
   {
@@ -15,8 +17,20 @@ const GET_ALL_POSTS = gql`
 
 const Home = () => {
   const { data, loading, error } = useQuery(GET_ALL_POSTS);
+  const [fetchPost, { data: posts }] = useLazyQuery(GET_ALL_POSTS);
 
-  if (loading) return <p className="p-5">Loading...</p>;
+  const { state, dispatch } = useContext(AuthContext);
+
+  const updateUsereName = () => {
+    dispatch({
+      type: 'LOGGED_IN_USER',
+      payload: 'ryan',
+    });
+  };
+
+  let history = useHistory();
+
+  if (loading) return <p className="p-5 text-center">LOADING...</p>;
 
   return (
     <div className="container">
@@ -34,6 +48,21 @@ const Home = () => {
           </div>
         ))}
       </div>
+      <div className="row p-5">
+        <button className="btn btn-info" onClick={() => fetchPost()}>
+          Fetch
+        </button>
+      </div>
+      <hr />
+      {JSON.stringify(posts)}
+      <hr />
+      {JSON.stringify(state.user)}
+      <hr />
+      <button className="btn btn-primary" onClick={updateUsereName}>
+        change user name
+      </button>
+      <hr />
+      {JSON.stringify(history)}
     </div>
   );
 };
