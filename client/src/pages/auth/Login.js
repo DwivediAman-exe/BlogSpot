@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/authContext';
 import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { auth, googleAuthProvider } from '../../firebase';
+import { auth, googleAuthProvider, githubAuthProvider } from '../../firebase';
 
 const Login = () => {
   const { dispatch } = useContext(AuthContext);
@@ -39,6 +39,20 @@ const Login = () => {
 
   const googleLogin = () => {
     auth.signInWithPopup(googleAuthProvider).then(async (result) => {
+      const { user } = result;
+      const idTokenResult = await user.getIdTokenResult();
+
+      dispatch({
+        type: 'LOGGED_IN_USER',
+        payload: { email: user.email, toekn: idTokenResult.token },
+      });
+
+      history.push('/');
+    });
+  };
+
+  const githubLogin = () => {
+    auth.signInWithPopup(githubAuthProvider).then(async (result) => {
       const { user } = result;
       const idTokenResult = await user.getIdTokenResult();
 
@@ -94,11 +108,16 @@ const Login = () => {
         <h2>OR</h2>
         <button
           onClick={googleLogin}
-          className="btn btn-raised btn-danger mt-4 mb-5 btn-lg py-3 fs-5"
+          className="btn btn-raised btn-danger mt-4 mb-5 btn-lg py-3 fs-5 me-5"
         >
           <i class="fab fa-google" /> LogIn with Google
         </button>
-        <br />
+        <button
+          onClick={githubLogin}
+          className="btn btn-raised btn-outline-danger mt-4 mb-5 btn-lg py-3 fs-5"
+        >
+          <i class="fab fa-github" /> LogIn with Github
+        </button>
       </form>
     </div>
   );
