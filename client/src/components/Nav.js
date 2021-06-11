@@ -1,6 +1,24 @@
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { auth } from 'firebase';
+import { AuthContext } from '../context/authContext';
+import { useContext, Fragment } from 'react';
 
 const Nav = () => {
+  const { state, dispatch } = useContext(AuthContext);
+
+  let history = useHistory();
+
+  const { user } = state;
+
+  const logout = () => {
+    auth().signOut();
+    dispatch({
+      type: 'LOGGED_IN_USER',
+      payload: null,
+    });
+    history.push('/login');
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-info p-3 fs-4">
       <div className="container-fluid">
@@ -20,16 +38,32 @@ const Nav = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link className="nav-link" aria-current="page" to="/login">
-                LOGIN
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/register">
-                REGISTER
-              </Link>
-            </li>
+            {!user && (
+              <Fragment>
+                <li className="nav-item">
+                  <Link className="nav-link" aria-current="page" to="/login">
+                    LOGIN
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/register">
+                    REGISTER
+                  </Link>
+                </li>
+              </Fragment>
+            )}
+            {user && (
+              <li className="nav-item">
+                <a
+                  href="/login"
+                  onClick={logout}
+                  className="nav-item 
+							nav-link"
+                >
+                  LOGOUT
+                </a>
+              </li>
+            )}
           </ul>
           <form className="d-flex input-group w-auto pe-5">
             <input

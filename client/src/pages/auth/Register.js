@@ -30,7 +30,7 @@ const Register = () => {
   return (
     <div className="container mt-5 pt-3 ">
       {loading ? (
-        <h4 className="text-warning">Loading</h4>
+        <h4 className="text-warning">Loading...</h4>
       ) : (
         <h1 className="text-center">Register</h1>
       )}

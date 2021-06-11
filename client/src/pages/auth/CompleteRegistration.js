@@ -1,25 +1,57 @@
 import { auth } from '../../firebase';
 import { toast } from 'react-toastify';
 import { useHistory } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../../context/authContext';
 
 const CompleteRegistration = () => {
+  const { dispatch } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
+  let history = useHistory();
+
   useEffect(() => {
     setEmail(window.localStorage.getItem('emailForRegistration'));
-  }, []);
+  }, [history]);
 
-  const handleSubmit = () => {};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    if (!email || !password) {
+      toast.error('Please fill in the fields');
+      return;
+    }
+    try {
+      const result = await auth.signInWithEmailLink(
+        email,
+        window.location.href
+      );
+      if (result.user.emailVerified) {
+        window.localStorage.removeItem('emailForRegistration');
+        let user = auth.currentUser;
+        await user.updatePassword(password);
+        const idTokenResult = await user.getIdTokenResult();
+        dispatch({
+          type: 'LOGGED_IN_USER',
+          payload: { email: user.email, token: idTokenResult.token },
+        });
+        history.push('/');
+      }
+    } catch (error) {
+      console.log('Register complete error', error.message);
+      setLoading(false);
+      toast.error(error.message);
+    }
+  };
 
   return (
     <div className="container mt-5 pt-3 ">
       {loading ? (
-        <h4 className="text-warning">Loading</h4>
+        <h4 className="text-warning">Loading...</h4>
       ) : (
-        <h1 className="text-center">Register</h1>
+        <h1 className="text-center">Complete Register</h1>
       )}
       <form onSubmit={handleSubmit}>
         <div class="form-outline mt-5 w-100 ">
