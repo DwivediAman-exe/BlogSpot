@@ -100,7 +100,7 @@ const Login = () => {
           </label>
         </div>
         <button
-          className="btn btn-primary btn-raised btn-lg mb-4"
+          className="btn btn-primary btn-raised btn-lg mb-4 fs-6"
           disabled={!email || !password || loading}
         >
           Login
@@ -108,13 +108,13 @@ const Login = () => {
         <h2>OR</h2>
         <button
           onClick={googleLogin}
-          className="btn btn-raised btn-danger mt-4 mb-5 btn-lg py-3 fs-5 me-5"
+          className="btn btn-raised btn-danger mt-4 mb-5 btn-lg py-3 fs-6 me-5"
         >
           <i class="fab fa-google" /> LogIn with Google
         </button>
         <button
           onClick={githubLogin}
-          className="btn btn-raised btn-outline-danger mt-4 mb-5 btn-lg py-3 fs-5"
+          className="btn btn-raised btn-outline-danger mt-4 mb-5 btn-lg py-3 fs-6"
         >
           <i class="fab fa-github" /> LogIn with Github
         </button>
