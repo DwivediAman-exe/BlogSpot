@@ -1,38 +1,52 @@
 import { useState } from 'react';
+import { auth } from '../../firebase.js';
+import { toast } from 'react-toastify';
 
 const Register = () => {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = () => {};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    const config = {
+      url: process.env.REACT_APP_CONFIRMATION_EMAIL_REDIRECT,
+      handleCodeInApp: true,
+    };
+    const result = await auth.sendSignInLinkToEmail(email, config);
+    console.log('result', result);
+    // show toast notification to user about email sent
+    toast.success(
+      `Registration Link sent to ${email}.
+			\n click on the link to complete Registration`
+    );
+    // save user email to local storage
+    window.localStorage.setItem('emailForRegistration', email);
+    // clear state
+    setEmail('');
+    setLoading('');
+  };
 
   return (
-    <div className="container p-5 ">
-      <h2 className="text-center">Register</h2>
+    <div className="container mt-5 pt-3 ">
+      {loading ? (
+        <h4 className="text-warning">Loading</h4>
+      ) : (
+        <h1 className="text-center">Register</h1>
+      )}
       <form onSubmit={handleSubmit}>
-        <div class="form-outline mb-4 p-2">
+        <div class="form-outline mt-5 w-100 p-3">
           <input
-            id="form1Example1"
             type="email"
+            id="typeEmail"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="form-control"
+            className="form-control fs-2"
             disabled={loading}
           />
-          <label class="form-label" for="form1Example1">
-            Email Address
+          <label class="form-label fs-3" for="typeEmail">
+            Enter Your Email Address
           </label>
-        </div>
-        <div class="form-outline mb-4  p-2">
-          <input type="password" id="form1Example2" class="form-control" />
-          <label class="form-label" for="form1Example2">
-            Password
-          </label>
-        </div>
-        <div class="row mb-4">
-          <div class="col">
-            <a href="#!">Forgot password?</a>
-          </div>
         </div>
         <button
           className="btn btn-primary btn-raised btn-lg"
