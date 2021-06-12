@@ -7,6 +7,7 @@ const {
   mergeTypes,
   mergeResolvers,
 } = require('merge-graphql-schemas');
+const { authCheck } = require('./helpers/auth');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
@@ -27,7 +28,7 @@ const db = async () => {
 };
 db();
 
-app.get('/', (req, res) => {
+app.get('/rest', authCheck, (req, res) => {
   res.json({
     data: 'you hit the endpoint',
   });
@@ -42,6 +43,7 @@ const resolvers = mergeResolvers(
 const apolloServer = new ApolloServer({
   typeDefs,
   resolvers,
+  context: ({ req, res }) => ({ req, res }),
 });
 
 apolloServer.applyMiddleware({ app });
