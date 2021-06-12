@@ -10,7 +10,10 @@ import { Switch, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { AuthContext } from './context/authContext';
 import PrivateRoute from './components/PrivateRoute';
-import PasswordForgot from './pages/auth/PasswordForgot';
+import PasswordUpdate from './pages/auth/PasswordUpdate';
+import PasswordForget from './pages/auth/PasswordForget';
+import Post from './pages/Post/Post';
+import Profile from './pages/auth/Profile';
 
 const App = () => {
   const { state } = useContext(AuthContext);
@@ -40,11 +43,14 @@ const App = () => {
           path="/complete-registration"
           component={CompleteRegistration}
         />
+        <Route exact path="/password/forgot" component={PasswordForget} />
         <PrivateRoute
           exact
-          path="/password/forgot"
-          component={PasswordForgot}
+          path="/password/update"
+          component={PasswordUpdate}
         />
+        <PrivateRoute exact path="/profile" component={Profile} />
+        <PrivateRoute exact path="/post/create" component={Post} />
       </Switch>
     </ApolloProvider>
   );

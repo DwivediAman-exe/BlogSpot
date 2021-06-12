@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/authContext';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { auth, googleAuthProvider, githubAuthProvider } from '../../firebase';
 import { useMutation } from '@apollo/react-hooks';
@@ -44,7 +44,7 @@ const Login = () => {
 
           // send user info to our server mongodb to either update/create
           userCreate();
-          history.push('/');
+          history.push('/profile');
         });
     } catch (error) {
       console.log('login error', error);
@@ -65,7 +65,7 @@ const Login = () => {
 
       // send user info to our server mongodb to either update/create
       userCreate();
-      history.push('/');
+      history.push('/profile');
     });
   };
 
@@ -81,7 +81,7 @@ const Login = () => {
 
       // send user info to our server mongodb to either update/create
       userCreate();
-      history.push('/');
+      history.push('/profile');
     });
   };
 
@@ -101,16 +101,19 @@ const Login = () => {
         setPassword={setPassword}
         showPasswordInput={true}
       />
-      <h2>OR</h2>
+      <Link className="text-warning float-end" to="/password/forgot">
+        Forgot Password..?
+      </Link>
+      <h4>OR</h4>
       <button
         onClick={googleLogin}
-        className="btn btn-raised btn-danger mt-3 mb-5 py-3 fs-7 me-5"
+        className="btn btn-raised btn-danger btn-rounded mt-3 py-3 fs-7 me-5"
       >
         <i class="fab fa-google" /> LogIn with Google
       </button>
       <button
         onClick={githubLogin}
-        className="btn btn-raised btn-outline-danger mt-4 mb-5 py-3 fs-7"
+        className="btn btn-raised btn-rounded btn-outline-danger mt-3 py-3 fs-7"
       >
         <i class="fab fa-github" /> Login with Github
       </button>

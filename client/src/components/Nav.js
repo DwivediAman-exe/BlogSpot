@@ -57,16 +57,23 @@ const Nav = () => {
               </Fragment>
             )}
             {user && (
-              <li className="nav-item">
-                <a
-                  href="/login"
-                  onClick={logout}
-                  className="nav-item 
+              <Fragment>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/profile">
+                    Dashboard
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <a
+                    href="/login"
+                    onClick={logout}
+                    className="nav-item 
 							nav-link"
-                >
-                  LOGOUT
-                </a>
-              </li>
+                  >
+                    Logout
+                  </a>
+                </li>
+              </Fragment>
             )}
           </ul>
           <form className="d-flex input-group w-auto pe-5">

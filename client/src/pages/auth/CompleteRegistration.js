@@ -54,7 +54,7 @@ const CompleteRegistration = () => {
 
         userCreate();
 
-        history.push('/');
+        history.push('/profile');
       }
     } catch (error) {
       console.log('Register complete error', error.message);

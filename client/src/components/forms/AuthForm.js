@@ -39,7 +39,7 @@ const AuthForm = ({
       </div>
     )}
     <button
-      className="btn btn-primary btn-raised btn-lg mb-4 fs-7"
+      className="btn btn-primary btn-rounded btn-raised btn-lg mb-4 fs-7"
       disabled={!email || loading}
     >
       Submit
