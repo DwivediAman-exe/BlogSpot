@@ -20,10 +20,10 @@ const Nav = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-info p-3 fs-4">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-info p-2 fs-5">
       <div className="container-fluid">
-        <Link className="navbar-brand pe-4 fs-2" to="/">
-          SocialApp
+        <Link className="navbar-brand pe-3 fs-3" to="/">
+          SocialConnect
         </Link>
         <button
           className="navbar-toggler"
@@ -41,7 +41,11 @@ const Nav = () => {
             {!user && (
               <Fragment>
                 <li className="nav-item">
-                  <Link className="nav-link" aria-current="page" to="/login">
+                  <Link
+                    className="nav-link me-1"
+                    aria-current="page"
+                    to="/login"
+                  >
                     LOGIN
                   </Link>
                 </li>
