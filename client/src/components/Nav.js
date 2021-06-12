@@ -60,7 +60,7 @@ const Nav = () => {
               <Fragment>
                 <li className="nav-item">
                   <Link className="nav-link" to="/profile">
-                    Dashboard
+                    {user && user.email.split('@')[0]}
                   </Link>
                 </li>
                 <li className="nav-item">
