@@ -5,6 +5,7 @@ import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../context/authContext';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
+import AuthForm from '../../components/forms/AuthForm';
 
 const USER_CREATE = gql`
   mutation userCreate {
@@ -63,51 +64,21 @@ const CompleteRegistration = () => {
   };
 
   return (
-    <div className="container mt-5 pt-3 ">
+    <div className="container mt-4">
       {loading ? (
         <h4 className="text-warning">Loading...</h4>
       ) : (
-        <h1 className="text-center">Complete Register</h1>
+        <h1 className="text-center">Complete Your Register</h1>
       )}
-      <form onSubmit={handleSubmit}>
-        <div class="form-outline mt-5 w-100 ">
-          <label class="form-label fs-3" for="typeEmail">
-            Your Email
-          </label>
-          <input
-            type="email"
-            id="typeEmail"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="form-control fs-2"
-            disabled
-          />
-        </div>
-        <div class="form-outline mt-5 w-100 p-3">
-          <input
-            type="password"
-            id="typePassword"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="form-control fs-3"
-            disabled={loading}
-          />
-          <label class="form-label fs-3" for="typePassword">
-            Set Your Password
-          </label>
-        </div>
-        <div class="row mb-4">
-          <div class="col">
-            <a href="#!">Forgot password?</a>
-          </div>
-        </div>
-        <button
-          className="btn btn-primary btn-raised btn-lg"
-          disabled={!email || loading}
-        >
-          Register
-        </button>
-      </form>
+      <AuthForm
+        email={email}
+        setEmail={setEmail}
+        loading={loading}
+        handleSubmit={handleSubmit}
+        password={password}
+        setPassword={setPassword}
+        showPasswordInput={true}
+      />
     </div>
   );
 };

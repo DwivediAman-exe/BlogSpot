@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { auth } from '../../firebase.js';
 import { toast } from 'react-toastify';
+import AuthForm from '../../components/forms/AuthForm';
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -28,33 +29,18 @@ const Register = () => {
   };
 
   return (
-    <div className="container mt-5 pt-3 ">
+    <div className="container mt-4">
       {loading ? (
         <h4 className="text-warning">Loading...</h4>
       ) : (
         <h1 className="text-center">Register</h1>
       )}
-      <form onSubmit={handleSubmit}>
-        <div class="form-outline mt-5 w-100 p-3">
-          <input
-            type="email"
-            id="typeEmail"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="form-control fs-2"
-            disabled={loading}
-          />
-          <label class="form-label fs-3" for="typeEmail">
-            Enter Your Email Address
-          </label>
-        </div>
-        <button
-          className="btn btn-primary btn-raised btn-lg"
-          disabled={!email || loading}
-        >
-          Register
-        </button>
-      </form>
+      <AuthForm
+        email={email}
+        loading={loading}
+        setEmail={setEmail}
+        handleSubmit={handleSubmit}
+      />
     </div>
   );
 };

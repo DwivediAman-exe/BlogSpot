@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { auth, googleAuthProvider, githubAuthProvider } from '../../firebase';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
+import AuthForm from '../../components/forms/AuthForm';
 
 const USER_CREATE = gql`
   mutation userCreate {
@@ -85,59 +86,34 @@ const Login = () => {
   };
 
   return (
-    <div className="container mt-5 pt-3 ">
+    <div className="container mt-4">
       {loading ? (
         <h4 className="text-warning">Loading...</h4>
       ) : (
         <h1 className="text-center">Log In</h1>
       )}
-      <form onSubmit={handleSubmit}>
-        <div class="form-outline mt-5 w-100 p-2">
-          <input
-            type="email"
-            id="typeEmail"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="form-control fs-2"
-            disabled={loading}
-          />
-          <label class="form-label fs-3" for="typeEmail">
-            Email Address
-          </label>
-        </div>
-        <div class="form-outline mt-3 mb-3 w-100 p-2">
-          <input
-            type="password"
-            id="typePassword"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="form-control fs-3"
-            disabled={loading}
-          />
-          <label class="form-label fs-3" for="typePassword">
-            Password
-          </label>
-        </div>
-        <button
-          className="btn btn-primary btn-raised btn-lg mb-4 fs-6"
-          disabled={!email || !password || loading}
-        >
-          Login
-        </button>
-        <h2>OR</h2>
-        <button
-          onClick={googleLogin}
-          className="btn btn-raised btn-danger mt-4 mb-5 btn-lg py-3 fs-6 me-5"
-        >
-          <i class="fab fa-google" /> LogIn with Google
-        </button>
-        <button
-          onClick={githubLogin}
-          className="btn btn-raised btn-outline-danger mt-4 mb-5 btn-lg py-3 fs-6"
-        >
-          <i class="fab fa-github" /> LogIn with Github
-        </button>
-      </form>
+      <AuthForm
+        email={email}
+        setEmail={setEmail}
+        loading={loading}
+        handleSubmit={handleSubmit}
+        password={password}
+        setPassword={setPassword}
+        showPasswordInput={true}
+      />
+      <h2>OR</h2>
+      <button
+        onClick={googleLogin}
+        className="btn btn-raised btn-danger mt-3 mb-5 py-3 fs-7 me-5"
+      >
+        <i class="fab fa-google" /> LogIn with Google
+      </button>
+      <button
+        onClick={githubLogin}
+        className="btn btn-raised btn-outline-danger mt-4 mb-5 py-3 fs-7"
+      >
+        <i class="fab fa-github" /> Login with Github
+      </button>
     </div>
   );
 };
