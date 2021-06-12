@@ -1,8 +1,19 @@
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/authContext';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { auth, googleAuthProvider, githubAuthProvider } from '../../firebase';
+import { useMutation } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
+
+const USER_CREATE = gql`
+  mutation userCreate {
+    userCreate {
+      username
+      email
+    }
+  }
+`;
 
 const Login = () => {
   const { dispatch } = useContext(AuthContext);
@@ -12,6 +23,8 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
 
   let history = useHistory();
+
+  const [userCreate] = useMutation(USER_CREATE);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,13 +38,15 @@ const Login = () => {
 
           dispatch({
             type: 'LOGGED_IN_USER',
-            payload: { email: user.email, toekn: idTokenResult.token },
+            payload: { email: user.email, token: idTokenResult.token },
           });
 
+          // send user info to our server mongodb to either update/create
+          userCreate();
           history.push('/');
         });
     } catch (error) {
-      console.log('Login error', error);
+      console.log('login error', error);
       toast.error(error.message);
       setLoading(false);
     }
@@ -44,9 +59,11 @@ const Login = () => {
 
       dispatch({
         type: 'LOGGED_IN_USER',
-        payload: { email: user.email, toekn: idTokenResult.token },
+        payload: { email: user.email, token: idTokenResult.token },
       });
 
+      // send user info to our server mongodb to either update/create
+      userCreate();
       history.push('/');
     });
   };
@@ -58,9 +75,11 @@ const Login = () => {
 
       dispatch({
         type: 'LOGGED_IN_USER',
-        payload: { email: user.email, toekn: idTokenResult.token },
+        payload: { email: user.email, token: idTokenResult.token },
       });
 
+      // send user info to our server mongodb to either update/create
+      userCreate();
       history.push('/');
     });
   };
