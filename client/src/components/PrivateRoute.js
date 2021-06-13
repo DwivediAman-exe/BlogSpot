@@ -13,7 +13,7 @@ const PrivateRoute = ({ children, ...rest }) => {
   }, [state.user]);
 
   const navLinks = () => (
-    <nav className="container m-5 ps-5">
+    <nav className="container m-5 ps-5 pe-5">
       <ul className="nav flex-column">
         <h2 className="text-warning">Dashboard</h2>
         <li className="nav-item">
@@ -38,7 +38,7 @@ const PrivateRoute = ({ children, ...rest }) => {
   const renderContent = () => (
     <div className="container-fluid pt-5">
       <div className="row">
-        <div className="col-md-4">{navLinks()}</div>
+        <div className="col-md-4 pe-5">{navLinks()}</div>
         <div className="col-md-8">
           <Route {...rest} />
         </div>
@@ -46,7 +46,11 @@ const PrivateRoute = ({ children, ...rest }) => {
     </div>
   );
 
-  return user ? renderContent() : <h4>Loading...</h4>;
+  return user ? (
+    renderContent()
+  ) : (
+    <h3 className="text-warning text-center mt-4">Loading...</h3>
+  );
 };
 
 export default PrivateRoute;

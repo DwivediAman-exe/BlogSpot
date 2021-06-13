@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import omitDeep from 'omit-deep';
 import { PROFILE } from '../../graphql/queries';
+import UserProfile from '../../components/forms/UserProfile';
 import { USER_UPDATE } from '../../graphql/mutations';
 import { AuthContext } from '../../context/authContext';
 import Resizer from 'react-image-file-resizer';
@@ -59,6 +60,7 @@ const Profile = () => {
   };
 
   const fileResizeAndUpload = (e) => {
+    setLoading(true);
     let fileInput = false;
     if (e.target.files[0]) {
       fileInput = true;
@@ -87,7 +89,6 @@ const Profile = () => {
               .then((response) => {
                 setLoading(false);
                 console.log(response);
-                toast.success('Image Added Successfully');
                 setValues({ ...values, images: [...images, response.data] });
               })
               .catch((error) => {
@@ -130,80 +131,24 @@ const Profile = () => {
       });
   };
 
-  const profileUpdateForm = () => (
-    <form onSubmit={handleSubmit}>
-      <div className="form-outline mt-4">
-        <label>Username</label>
-        <input
-          type="text"
-          name="username"
-          value={username}
-          onChange={handleChange}
-          className="form-control ps-3 pt-1 pb-1"
-          placeholder="Username"
-          disabled={loading}
-          style={{ borderBottom: '1px solid gray' }}
-        />
-      </div>
-      <div className="form-outline mt-4">
-        <label>Name</label>
-        <input
-          type="text"
-          name="name"
-          value={values.name}
-          onChange={handleChange}
-          className="form-control ps-3 pt-1 pb-1"
-          placeholder="Name"
-          disabled={loading}
-          style={{ borderBottom: '1px solid gray' }}
-        />
-      </div>
-      <div className="form-outline mt-4">
-        <label>Email</label>
-        <input
-          type="email"
-          name="email"
-          value={email}
-          onChange={handleChange}
-          className="form-control ps-3 pt-1 pb-1"
-          placeholder="Email"
-          disabled
-        />
-      </div>
-
-      <div className="form-outline mt-4">
-        <label>About</label>
-        <textarea
-          name="about"
-          value={about}
-          onChange={handleChange}
-          className="form-control ps-3 pt-1 pb-1"
-          placeholder="About"
-          disabled={loading}
-          style={{ borderBottom: '1px solid gray' }}
-        />
-      </div>
-      <button
-        className="btn btn-primary btn-rounded btn-raised btn-lg mt-3 mb-3 fs-7"
-        disabled={!email || loading}
-      >
-        Update Details
-      </button>
-    </form>
-  );
-
   return (
     <div className="container ps-3 pe-5 pu-3">
-      <h2 className="text-danger text-center">Profile</h2>
       <div className="row">
+        <div className="col-md-12">
+          {loading ? (
+            <h4 className="text-warning text-center">Loading...</h4>
+          ) : (
+            <h2 className="text-danger text-center">Profile</h2>
+          )}
+        </div>
         <div className="col-md-3">
           <div className="form-outline mt-4">
-            <label>Images</label>
+            <label>Avatars</label>
             <input
               type="file"
               accept="image/*"
               onChange={fileResizeAndUpload}
-              className="btn btn-outline-secondary btn-rounded form-control p-2 mt-2 ms-1"
+              className="btn btn-outline-secondary btn-rounded form-control p-2 mt-2 ms-1 mb-2"
               style={{
                 borderLeft: '2px solid gray',
                 borderBottom: '2px solid gray',
@@ -217,14 +162,19 @@ const Profile = () => {
               src={image.url}
               alt={image.public_id}
               key={image.public_id}
-              style={{ height: '100px' }}
+              style={{ height: '100px', margin: '2px', borderRadius: '20px' }}
               className="float-end"
               onClick={() => handleImageRemove(image.public_id)}
             />
           ))}
         </div>
       </div>
-      {profileUpdateForm()}
+      <UserProfile
+        {...values}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        loading={loading}
+      />
     </div>
   );
 };
