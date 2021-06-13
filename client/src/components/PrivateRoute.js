@@ -15,6 +15,7 @@ const PrivateRoute = ({ children, ...rest }) => {
   const navLinks = () => (
     <nav>
       <ul className="nav flex-column">
+        <h2 className="text-warning">Dashboard</h2>
         <li className="nav-item">
           <Link className="nav-link" to="/profile">
             Profile

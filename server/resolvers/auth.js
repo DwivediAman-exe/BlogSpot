@@ -2,10 +2,11 @@ const { gql } = require('apollo-server-express');
 const { authCheck } = require('../helpers/auth');
 const shortid = require('shortid');
 const User = require('../models/user');
+const { DateTimeResolver } = require('graphql-scalars');
 
-const me = async (parent, args, { req, res }) => {
-  await authCheck(req);
-  return 'aman';
+const profile = async (parent, args, { req, res }) => {
+  const currentUser = await authCheck(req);
+  return await User.findOne({ email: currentUser.email }).exec();
 };
 
 const userCreate = async (parent, args, { req }) => {
@@ -19,11 +20,24 @@ const userCreate = async (parent, args, { req }) => {
       }).save();
 };
 
+const userUpdate = async (parents, args, { req }) => {
+  const currentUser = await authCheck(req);
+
+  const updatedUser = await User.findOneAndUpdate(
+    { email: currentUser.email },
+    { ...args.input },
+    { new: true }
+  ).exec();
+
+  return updatedUser;
+};
+
 module.exports = {
   Query: {
-    me,
+    profile,
   },
   Mutation: {
     userCreate,
+    userUpdate,
   },
 };
