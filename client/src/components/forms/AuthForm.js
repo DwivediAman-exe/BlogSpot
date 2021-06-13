@@ -10,7 +10,7 @@ const AuthForm = ({
 }) => (
   <form onSubmit={handleSubmit}>
     {!hideEmailInput && (
-      <div class="form-outline p-2">
+      <div class="form-outline mt-4">
         <label class="form-label fs-4" for="typeEmail">
           Email Address
         </label>
@@ -19,14 +19,14 @@ const AuthForm = ({
           id="typeEmail"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="form-control fs-4"
+          className="form-control fs-5 ps-3 pt-1 pb-1"
           disabled={loading}
           style={{ borderBottom: '1px solid yellow' }}
         />
       </div>
     )}
     {showPasswordInput && (
-      <div class="form-outline p-2">
+      <div class="form-outline mt-4">
         <label class="form-label fs-4" for="typePassword">
           Password
         </label>
@@ -35,14 +35,14 @@ const AuthForm = ({
           id="typePassword"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="form-control fs-5"
+          className="form-control fs-5 ps-3 pt-1 pb-1"
           disabled={loading}
           style={{ borderBottom: '1px solid yellow' }}
         />
       </div>
     )}
     <button
-      className="btn btn-primary btn-rounded btn-raised btn-lg mb-4 fs-7"
+      className="btn btn-primary btn-rounded btn-raised btn-lg mt-3 mb-4 fs-7"
       disabled={loading}
     >
       Submit
