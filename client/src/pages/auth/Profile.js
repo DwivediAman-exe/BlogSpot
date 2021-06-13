@@ -3,40 +3,8 @@ import { toast } from 'react-toastify';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import omitDeep from 'omit-deep';
-
-const USER_INFO = gql`
-  fragment userInfo on User {
-    _id
-    name
-    email
-    about
-    username
-    images {
-      url
-      public_id
-    }
-    createdAt
-    updatedAt
-  }
-`;
-
-const PROFILE = gql`
-  query {
-    profile {
-      ...userInfo
-    }
-  }
-  ${USER_INFO}
-`;
-
-const USER_UPDATE = gql`
-  mutation userUpdate($input: UserUpdateInput!) {
-    userUpdate(input: $input) {
-      ...userInfo
-    }
-  }
-  ${USER_INFO}
-`;
+import { PROFILE } from '../../graphql/queries';
+import { USER_UPDATE } from '../../graphql/mutations';
 
 const Profile = () => {
   const [values, setValues] = useState({
@@ -160,8 +128,8 @@ const Profile = () => {
   );
 
   return (
-    <div>
-      <h2 className="text-danger text-center p-4">Profile</h2>
+    <div className="container ps-3 pe-5 pu-3">
+      <h2 className="text-danger text-center">Profile</h2>
       {profileUpdateForm()}
     </div>
   );

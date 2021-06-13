@@ -13,7 +13,7 @@ const PrivateRoute = ({ children, ...rest }) => {
   }, [state.user]);
 
   const navLinks = () => (
-    <nav className="container p-4">
+    <nav className="container m-5 ps-5">
       <ul className="nav flex-column">
         <h2 className="text-warning">Dashboard</h2>
         <li className="nav-item">

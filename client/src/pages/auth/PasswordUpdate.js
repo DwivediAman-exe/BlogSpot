@@ -24,7 +24,7 @@ const PasswordUpdate = () => {
   };
 
   return (
-    <div className="container mt-4">
+    <div className="container mt-3">
       {loading ? (
         <h4 className="text-warning">Loading...</h4>
       ) : (
