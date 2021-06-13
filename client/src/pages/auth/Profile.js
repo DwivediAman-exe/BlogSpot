@@ -1,12 +1,16 @@
-import { useState, useMemo, Fragment } from 'react';
+import { useState, useMemo, useContext } from 'react';
 import { toast } from 'react-toastify';
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 import omitDeep from 'omit-deep';
 import { PROFILE } from '../../graphql/queries';
 import { USER_UPDATE } from '../../graphql/mutations';
+import { AuthContext } from '../../context/authContext';
+import Resizer from 'react-image-file-resizer';
+import axios from 'axios';
 
 const Profile = () => {
+  const { state } = useContext(AuthContext);
+
   const [values, setValues] = useState({
     username: '',
     name: '',
@@ -54,7 +58,50 @@ const Profile = () => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
-  const handleImageChange = () => {};
+  const fileResizeAndUpload = (e) => {
+    let fileInput = false;
+    if (e.target.files[0]) {
+      fileInput = true;
+    }
+    if (fileInput) {
+      try {
+        Resizer.imageFileResizer(
+          e.target.files[0],
+          300,
+          300,
+          'JPEG',
+          100,
+          0,
+          (uri) => {
+            // console.log(uri);
+            axios
+              .post(
+                `${process.env.REACT_APP_REST_ENDPOINT}/uploadimages`,
+                { image: uri },
+                {
+                  headers: {
+                    authtoken: state.user.token,
+                  },
+                }
+              )
+              .then((response) => {
+                setLoading(false);
+                console.log(response);
+                toast.success('Image Uploaded');
+                setValues({ ...values, images: [...images, response.data] });
+              })
+              .catch((error) => {
+                setLoading(false);
+                console.log('Cloudinary upload failed error', error);
+              });
+          },
+          'base64'
+        );
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
 
   const profileUpdateForm = () => (
     <form onSubmit={handleSubmit}>
@@ -101,7 +148,7 @@ const Profile = () => {
         <input
           type="file"
           accept="image/*"
-          onChange={handleImageChange}
+          onChange={fileResizeAndUpload}
           className="form-control ps-3 pt-1 pb-1"
           style={{ borderBottom: '1px solid gray' }}
         />

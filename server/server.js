@@ -32,10 +32,16 @@ const db = async () => {
 };
 db();
 
-app.get('/rest', authCheck, (req, res) => {
+app.get('/rest', authCheckMiddleware, (req, res) => {
   res.json({
     data: 'you hit the endpoint',
   });
+});
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 app.post('/uploadimages', authCheckMiddleware, (req, res) => {
@@ -50,11 +56,12 @@ app.post('/uploadimages', authCheckMiddleware, (req, res) => {
     {
       public_id: `${Date.now}`,
       resource_type: 'auto',
+      folder: 'GQLsocialapp',
     }
   );
 });
 
-app.post('/removeimage', authCheckMiddleware, (req, res) => {
+app.post('/removeimages', authCheckMiddleware, (req, res) => {
   let image_id = req.body.public_id;
 
   cloudinary.uploader.destroy(image_id, (error, result) => {
