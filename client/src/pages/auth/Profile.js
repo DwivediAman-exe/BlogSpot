@@ -87,7 +87,7 @@ const Profile = () => {
               .then((response) => {
                 setLoading(false);
                 console.log(response);
-                toast.success('Image Uploaded');
+                toast.success('Image Added Successfully');
                 setValues({ ...values, images: [...images, response.data] });
               })
               .catch((error) => {
@@ -101,6 +101,33 @@ const Profile = () => {
         console.log(err);
       }
     }
+  };
+
+  const handleImageRemove = (id) => {
+    setLoading(true);
+    axios
+      .post(
+        `${process.env.REACT_APP_REST_ENDPOINT}/removeimage`,
+        {
+          public_id: id,
+        },
+        {
+          headers: {
+            authtoken: state.user.token,
+          },
+        }
+      )
+      .then((response) => {
+        setLoading(false);
+        let filteredImages = images.filter((item) => {
+          return item.public_id !== id;
+        });
+        setValues({ ...values, images: filteredImages });
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.log('Delete image failed', error);
+      });
   };
 
   const profileUpdateForm = () => (
@@ -143,16 +170,7 @@ const Profile = () => {
           disabled
         />
       </div>
-      <div className="form-outline mt-4">
-        <label>Image</label>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={fileResizeAndUpload}
-          className="form-control ps-3 pt-1 pb-1"
-          style={{ borderBottom: '1px solid gray' }}
-        />
-      </div>
+
       <div className="form-outline mt-4">
         <label>About</label>
         <textarea
@@ -177,6 +195,35 @@ const Profile = () => {
   return (
     <div className="container ps-3 pe-5 pu-3">
       <h2 className="text-danger text-center">Profile</h2>
+      <div className="row">
+        <div className="col-md-3">
+          <div className="form-outline mt-4">
+            <label>Images</label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={fileResizeAndUpload}
+              className="btn btn-outline-secondary btn-rounded form-control p-2 mt-2 ms-1"
+              style={{
+                borderLeft: '2px solid gray',
+                borderBottom: '2px solid gray',
+              }}
+            />
+          </div>
+        </div>
+        <div className="col-md-9">
+          {images.map((image) => (
+            <img
+              src={image.url}
+              alt={image.public_id}
+              key={image.public_id}
+              style={{ height: '100px' }}
+              className="float-end"
+              onClick={() => handleImageRemove(image.public_id)}
+            />
+          ))}
+        </div>
+      </div>
       {profileUpdateForm()}
     </div>
   );

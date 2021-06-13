@@ -61,7 +61,7 @@ app.post('/uploadimages', authCheckMiddleware, (req, res) => {
   );
 });
 
-app.post('/removeimages', authCheckMiddleware, (req, res) => {
+app.post('/removeimage', authCheckMiddleware, (req, res) => {
   let image_id = req.body.public_id;
 
   cloudinary.uploader.destroy(image_id, (error, result) => {
