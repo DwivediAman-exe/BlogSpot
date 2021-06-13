@@ -2,6 +2,7 @@ import { useState, useMemo, Fragment } from 'react';
 import { toast } from 'react-toastify';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
+import omitDeep from 'omit-deep';
 
 const PROFILE = gql`
   query {
@@ -53,14 +54,13 @@ const Profile = () => {
 
   useMemo(() => {
     if (data) {
-      console.log(data.profile);
       setValues({
         ...values,
         username: data.profile.username,
         name: data.profile.name,
         email: data.profile.email,
         about: data.profile.about,
-        images: data.profile.images,
+        images: omitDeep(data.profile.images, ['__typename']),
       });
     }
   }, [data]);
@@ -137,7 +137,6 @@ const Profile = () => {
           accept="image/*"
           onChange={handleImageChange}
           className="form-control ps-3 pt-1 pb-1"
-          placeholder="Image"
           style={{ borderBottom: '1px solid gray' }}
         />
       </div>
@@ -154,7 +153,7 @@ const Profile = () => {
         />
       </div>
       <button
-        className="btn btn-primary btn-rounded btn-raised btn-lg mt-3 fs-7"
+        className="btn btn-primary btn-rounded btn-raised btn-lg mt-3 mb-3 fs-7"
         disabled={!email || loading}
       >
         Update Details

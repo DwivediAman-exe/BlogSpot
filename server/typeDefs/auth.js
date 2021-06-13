@@ -32,6 +32,7 @@ module.exports = gql`
     name: String
     images: [ImageInput]
     about: String
+    email: String!
   }
   type Query {
     profile: User!
