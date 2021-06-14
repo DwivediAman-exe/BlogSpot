@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Image from './Image';
 
 const UserCard = ({ user }) => {
@@ -13,8 +14,10 @@ const UserCard = ({ user }) => {
     >
       <div className="card-body">
         <Image image={images[0]} />
-        <h4 className="text-primary">@{username}</h4>
-        <hr style={{ width: '40%', margin: '5% 30%', color: 'gray' }} />
+        <Link to={`/user/${username}`}>
+          <h4 className="text-primary mt-2 p-1">@{username}</h4>
+        </Link>
+        <hr style={{ width: '40%', margin: '4% 30%', color: 'gray' }} />
         <small className="fw-bolder" style={{ color: '#78909C' }}>
           {about}
         </small>
