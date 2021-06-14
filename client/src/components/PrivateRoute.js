@@ -3,7 +3,7 @@ import { Route, Link } from 'react-router-dom';
 import { AuthContext } from '../context/authContext';
 import LoadingToRedirect from './LoadingToRedirect';
 
-const PrivateRoute = ({ children, ...rest }) => {
+const PrivateRoute = ({ ...rest }) => {
   const { state } = useContext(AuthContext);
   const [user, setUser] = useState(false);
 
@@ -16,7 +16,7 @@ const PrivateRoute = ({ children, ...rest }) => {
   const navLinks = () => (
     <nav className="container m-5 ps-5 pe-5">
       <ul className="nav flex-column">
-        <h2 className="text-warning">Dashboard</h2>
+        <h2 className="text-warning mb-4">Dashboard</h2>
         <li className="nav-item">
           <Link className="nav-link" to="/profile">
             Profile

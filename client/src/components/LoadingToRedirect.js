@@ -28,7 +28,7 @@ const LoadingToRedirect = ({ path }) => {
   return (
     <div className="container mt-4 text-center text-warning">
       <GridLoader color={color} loading={loading} css={override} size={30} />
-      <h3 mt-3>Redirecting you in {count} seconds...</h3>
+      <h3 mt-3>Redirecting ...</h3>
     </div>
   );
 };

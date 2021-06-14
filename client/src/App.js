@@ -10,6 +10,7 @@ import { Switch, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { AuthContext } from './context/authContext';
 import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
 import PasswordUpdate from './pages/auth/PasswordUpdate';
 import PasswordForget from './pages/auth/PasswordForget';
 import Post from './pages/Post/Post';
@@ -36,8 +37,8 @@ const App = () => {
       <ToastContainer />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/login" component={Login} />
+        <PublicRoute exact path="/register" component={Register} />
+        <PublicRoute exact path="/login" component={Login} />
         <Route
           exact
           path="/complete-registration"
