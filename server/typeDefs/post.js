@@ -2,9 +2,11 @@ const { gql } = require('apollo-server-express');
 
 module.exports = gql`
   type Post {
-    id: ID!
+    _id: ID!
     title: String!
-    description: String!
+    content: String!
+    image: Image
+    postedBy: User
   }
 
   type Query {
@@ -13,13 +15,14 @@ module.exports = gql`
   }
 
   # input type
-  input PostInput {
+  input PostCreateInput {
     title: String!
-    description: String!
+    content: String!
+    image: ImageInput
   }
 
   # mutations
   type Mutation {
-    newPost(input: PostInput!): Post!
+    postCreate(input: PostCreateInput!): Post!
   }
 `;
