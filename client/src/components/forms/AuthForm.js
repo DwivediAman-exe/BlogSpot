@@ -11,7 +11,7 @@ const AuthForm = ({
   <form onSubmit={handleSubmit}>
     {!hideEmailInput && (
       <div class="form-outline mt-4">
-        <label class="form-label fs-4" for="typeEmail">
+        <label class="form-label fs-5" for="typeEmail">
           Email Address
         </label>
         <input
@@ -19,7 +19,7 @@ const AuthForm = ({
           id="typeEmail"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="form-control fs-5 ps-3 pt-1 pb-1"
+          className="form-control fs-6 ps-3 pt-1 pb-1"
           disabled={loading}
           style={{ borderBottom: '1px solid yellow' }}
         />
@@ -27,7 +27,7 @@ const AuthForm = ({
     )}
     {showPasswordInput && (
       <div class="form-outline mt-4">
-        <label class="form-label fs-4" for="typePassword">
+        <label class="form-label fs-5" for="typePassword">
           Password
         </label>
         <input
@@ -35,7 +35,7 @@ const AuthForm = ({
           id="typePassword"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="form-control fs-5 ps-3 pt-1 pb-1"
+          className="form-control fs-6 ps-3 pt-1 pb-1"
           disabled={loading}
           style={{ borderBottom: '1px solid yellow' }}
         />
