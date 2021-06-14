@@ -10,8 +10,8 @@ module.exports = gql`
   }
 
   type Query {
-    totalPosts: Int!
     allPosts: [Post!]!
+    postsByUser: [Post!]!
   }
 
   # input type
