@@ -4,7 +4,6 @@ import { useHistory, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { auth, googleAuthProvider, githubAuthProvider } from '../../firebase';
 import { useMutation } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 import AuthForm from '../../components/forms/AuthForm';
 import { USER_CREATE } from '../../graphql/mutations';
 
@@ -36,7 +35,7 @@ const Login = () => {
 
           // send user info to our server mongodb to either update/create
           userCreate();
-          history.push('/profile');
+          history.push('/password/update');
         });
     } catch (error) {
       console.log('login error', error);
@@ -57,7 +56,7 @@ const Login = () => {
 
       // send user info to our server mongodb to either update/create
       userCreate();
-      history.push('/profile');
+      history.push('/password/update');
     });
   };
 
@@ -73,7 +72,7 @@ const Login = () => {
 
       // send user info to our server mongodb to either update/create
       userCreate();
-      history.push('/profile');
+      history.push('/password/update');
     });
   };
 

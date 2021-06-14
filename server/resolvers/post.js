@@ -6,7 +6,6 @@ const { DateTimeResolver } = require('graphql-scalars');
 // queries
 const totalPosts = () => posts.length;
 const allPosts = async (parent, args, { req, res }) => {
-  await authCheck(req);
   return posts;
 };
 
