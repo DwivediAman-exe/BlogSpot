@@ -28,13 +28,14 @@ const Home = () => {
       <div className="row p-5">
         {data &&
           data.allPosts.map((post) => (
-            <div className="col-md-4" key={post.id}>
+            <div className="col-md-4" key={post._id}>
               <div className="card">
                 <div className="card-body">
                   <div className="card-title">
                     <h4>{post.title}</h4>
                   </div>
-                  <p className="card-text">{post.description}</p>
+                  <p className="card-text">{post.content}</p>
+                  <p className="card-text">@{post.postedBy.username}</p>
                 </div>
               </div>
             </div>

@@ -4,7 +4,13 @@ import axios from 'axios';
 import Image from './Image';
 import { AuthContext } from '../context/authContext';
 
-const FileUpload = ({ setLoading, setValues, values, loading }) => {
+const FileUpload = ({
+  setLoading,
+  setValues,
+  values,
+  loading,
+  singleUpload = false,
+}) => {
   const { state } = useContext(AuthContext);
 
   const fileResizeAndUpload = (e) => {
@@ -36,9 +42,15 @@ const FileUpload = ({ setLoading, setValues, values, loading }) => {
               )
               .then((response) => {
                 setLoading(false);
-                console.log(response);
-                const { images } = values;
-                setValues({ ...values, images: [...images, response.data] });
+                console.log('Image uploaded', response);
+
+                if (singleUpload) {
+                  const { image } = values;
+                  setValues({ ...values, image: response.data });
+                } else {
+                  const { images } = values;
+                  setValues({ ...values, images: [...images, response.data] });
+                }
               })
               .catch((error) => {
                 setLoading(false);
@@ -69,11 +81,23 @@ const FileUpload = ({ setLoading, setValues, values, loading }) => {
       )
       .then((response) => {
         setLoading(false);
-        const { images } = values;
-        let filteredImages = images.filter((item) => {
-          return item.public_id !== id;
-        });
-        setValues({ ...values, images: filteredImages });
+
+        if (singleUpload) {
+          const { image } = values;
+          setValues({
+            ...values,
+            image: {
+              url: '',
+              public_id: '',
+            },
+          });
+        } else {
+          const { images } = values;
+          let filteredImages = images.filter((item) => {
+            return item.public_id !== id;
+          });
+          setValues({ ...values, images: filteredImages });
+        }
       })
       .catch((error) => {
         setLoading(false);
@@ -85,7 +109,8 @@ const FileUpload = ({ setLoading, setValues, values, loading }) => {
     <div className="row">
       <div className="col-md-3">
         <div className="form-outline mt-4">
-          <label>Avatars</label>
+          {values.image && <label>Depiction</label>}
+          {values.images && <label>Avatars</label>}
           <input
             type="file"
             accept="image/*"
@@ -99,13 +124,21 @@ const FileUpload = ({ setLoading, setValues, values, loading }) => {
         </div>
       </div>
       <div className="col-md-9">
-        {values.images.map((image) => (
+        {values.image && (
           <Image
-            image={image}
-            key={image.public_id}
+            image={values.image}
+            key={values.image.public_id}
             handleImageRemove={handleImageRemove}
           />
-        ))}
+        )}
+        {values.images &&
+          values.images.map((image) => (
+            <Image
+              image={image}
+              key={image.public_id}
+              handleImageRemove={handleImageRemove}
+            />
+          ))}
       </div>
     </div>
   );
