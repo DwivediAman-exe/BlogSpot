@@ -4,6 +4,7 @@ import { AuthContext } from '../../context/authContext';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import FileUpload from '../../components/FileUpload';
 import { POST_CREATE } from '../../graphql/mutations';
+import { POST_DELETE } from '../../graphql/mutations';
 import { POSTS_BY_USER } from '../../graphql/queries';
 import PostCard from '../../components/PostCard';
 import omitDeep from 'omit-deep';
@@ -38,6 +39,29 @@ const Post = () => {
 
   const { data: posts } = useQuery(POSTS_BY_USER);
 
+  const [postDelete] = useMutation(POST_DELETE, {
+    update: ({ data }) => {
+      console.log(('post delete', data));
+      toast.error('Post Deleted');
+    },
+    onError: (err) => {
+      console.log(err);
+      toast.error('Post Deleted failed');
+    },
+  });
+
+  const handleDelete = async (postId) => {
+    let answer = window.confirm('Press OK to Confirm and Delete Post');
+    if (answer) {
+      setLoading(true);
+      postDelete({
+        variables: { postId },
+        refetchQueries: [{ query: POSTS_BY_USER }],
+      });
+      setLoading(false);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -62,8 +86,8 @@ const Post = () => {
           value={title}
           onChange={handleChange}
           className="form-control ps-3 pt-1 pb-1"
-          placeholder="Create a eye-catching Title !"
-          maxLength="100"
+          placeholder="Create a eye-catching Title ! (max-length : 70 char)"
+          maxLength="70"
           autoComplete="off"
           disabled={loading}
           style={{ borderBottom: '1px solid gray' }}
@@ -114,7 +138,12 @@ const Post = () => {
           {posts &&
             posts.postsByUser.map((post) => (
               <div className="col-md-6 pt-2" key={post._id}>
-                <PostCard post={post} />
+                <PostCard
+                  post={post}
+                  showUpdateButton={true}
+                  showDeleteButton={true}
+                  handleDelete={handleDelete}
+                />
               </div>
             ))}
         </div>
