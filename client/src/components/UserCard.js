@@ -35,7 +35,7 @@ const UserCard = ({ user }) => {
           {about}
         </small>
         <br />
-        <small className="float-end mt-1 fw-light" style={{ color: '#78909C' }}>
+        <small className="float-end p-2 fw-light" style={{ color: 'gray' }}>
           Joined{' - '}
           {mon[createdAt.split('T')[0].split('-')[1].replace(/^0+/, '')]}
           {','}
