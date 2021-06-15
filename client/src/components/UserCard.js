@@ -1,15 +1,28 @@
 import { Link } from 'react-router-dom';
 import Image from './Image';
 
+var mon = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'June',
+  'July',
+  'Aug',
+  'Sept',
+  'Oct',
+  'Nov',
+  'Dec',
+];
+
 const UserCard = ({ user }) => {
-  const { username, images, about } = user;
+  const { username, images, about, createdAt } = user;
   return (
     <div
-      className="card text-center hover-shadow p-2 m-1 rounded"
+      className="card text-center hover-shadow p-1 m-1"
       style={{
         minHeight: '300px',
-        borderTopLeftRadius: '50px !important',
-        borderBottomRightRadius: '10px !important',
       }}
     >
       <div className="card-body">
@@ -20,6 +33,13 @@ const UserCard = ({ user }) => {
         <hr style={{ width: '40%', margin: '4% 30%', color: 'gray' }} />
         <small className="fw-bolder" style={{ color: '#78909C' }}>
           {about}
+        </small>
+        <br />
+        <small className="float-end mt-1 fw-light" style={{ color: '#78909C' }}>
+          Joined{' - '}
+          {mon[createdAt.split('T')[0].split('-')[1].replace(/^0+/, '')]}
+          {','}
+          {createdAt.split('T')[0].split('-')[0]}
         </small>
       </div>
     </div>
