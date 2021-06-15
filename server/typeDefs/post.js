@@ -14,6 +14,7 @@ module.exports = gql`
   type Query {
     allPosts: [Post!]!
     postsByUser: [Post!]!
+    singlePost(postId: String!): Post!
   }
 
   # input type
@@ -23,8 +24,17 @@ module.exports = gql`
     image: ImageInput
   }
 
+  input PostUpdateInput {
+    _id: String!
+    title: String!
+    content: String!
+    image: ImageInput
+  }
+
   # mutations
   type Mutation {
     postCreate(input: PostCreateInput!): Post!
+    postUpdate(input: PostUpdateInput!): Post!
+    postDelete(postId: String): Post!
   }
 `;
