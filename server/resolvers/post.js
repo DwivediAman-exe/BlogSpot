@@ -69,7 +69,9 @@ const postUpdate = async (parent, args, { req }) => {
       ...args.input,
     },
     { new: true }
-  ).exec();
+  )
+    .exec()
+    .then((post) => post.populate('postedBy', 'username _id').execPopulate());
 
   return updatedPost;
 };
