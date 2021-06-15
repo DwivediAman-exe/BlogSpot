@@ -7,6 +7,8 @@ module.exports = gql`
     content: String!
     image: Image
     postedBy: User
+    createdAt: DateTime
+    updatedAt: DateTime
   }
 
   type Query {

@@ -3,6 +3,9 @@ import { toast } from 'react-toastify';
 import { AuthContext } from '../../context/authContext';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import FileUpload from '../../components/FileUpload';
+import { POST_CREATE } from '../../graphql/mutations';
+import { POSTS_BY_USER } from '../../graphql/queries';
+import PostCard from '../../components/PostCard';
 import omitDeep from 'omit-deep';
 
 const initialState = {
@@ -20,8 +23,28 @@ const Post = () => {
 
   const { title, content, image } = values;
 
-  const handleSubmit = () => {
-    //
+  const [postCreate] = useMutation(POST_CREATE, {
+    update: (cache, { data: { postCreate } }) => {
+      const { postsByUser } = cache.readQuery({ query: POSTS_BY_USER });
+      cache.writeQuery({
+        query: POSTS_BY_USER,
+        data: {
+          postsByUser: [postCreate, ...postsByUser],
+        },
+      });
+    },
+    error: (err) => console.log(err.graphQLError[0].message),
+  });
+
+  const { data: posts } = useQuery(POSTS_BY_USER);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    postCreate({ variables: { input: values } });
+    setValues(initialState);
+    setLoading(false);
+    toast.success('Post Created Successfully');
   };
 
   const handleChange = (e) => {
@@ -40,6 +63,7 @@ const Post = () => {
           onChange={handleChange}
           className="form-control ps-3 pt-1 pb-1"
           placeholder="Create a eye-catching Title !"
+          maxLength="100"
           autoComplete="off"
           disabled={loading}
           style={{ borderBottom: '1px solid gray' }}
@@ -72,11 +96,11 @@ const Post = () => {
   return (
     <div className="container mt-4">
       {loading ? (
-        <h4 className="text-warning">Loading...</h4>
+        <h4 className="text-warning text-center ">Loading...</h4>
       ) : (
         <h2 className="text-center text-danger">Create Post</h2>
       )}
-      <div className="row">
+      <div>
         <FileUpload
           values={values}
           loading={loading}
@@ -85,6 +109,15 @@ const Post = () => {
           singleUpload={true}
         />
         {createForm()}
+        <div className="row p-4">
+          <h2 className="text-center text-danger">Your Posts</h2>
+          {posts &&
+            posts.postsByUser.map((post) => (
+              <div className="col-md-6 pt-2" key={post._id}>
+                <PostCard post={post} />
+              </div>
+            ))}
+        </div>
       </div>
     </div>
   );
