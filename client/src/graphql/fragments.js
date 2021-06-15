@@ -29,5 +29,7 @@ export const POST_DATA = gql`
       _id
       username
     }
+    createdAt
+    updatedAt
   }
 `;

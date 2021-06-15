@@ -19,6 +19,15 @@ export const GET_ALL_POSTS = gql`
   ${POST_DATA}
 `;
 
+export const POSTS_BY_USER = gql`
+  query {
+    postsByUser {
+      ...postData
+    }
+  }
+  ${POST_DATA}
+`;
+
 export const ALL_USERS = gql`
   query {
     allUsers {
