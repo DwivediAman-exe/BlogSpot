@@ -1,3 +1,11 @@
 body {
   letter-spacing: 0.08rem;
 }
+
+.bg-post {
+  background-color: rgba(240, 244, 245, 0.568);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 0px;
+}

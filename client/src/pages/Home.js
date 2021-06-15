@@ -5,6 +5,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../context/authContext';
 import { useHistory } from 'react-router-dom';
 import { GET_ALL_POSTS } from '../graphql/queries';
+import PostCard from '../components/PostCard';
 
 const Home = () => {
   const { data, loading, error } = useQuery(GET_ALL_POSTS);
@@ -25,19 +26,11 @@ const Home = () => {
 
   return (
     <div className="container">
-      <div className="row p-5">
+      <div className="row p-5 child">
         {data &&
           data.allPosts.map((post) => (
-            <div className="col-md-4" key={post._id}>
-              <div className="card">
-                <div className="card-body">
-                  <div className="card-title">
-                    <h4>{post.title}</h4>
-                  </div>
-                  <p className="card-text">{post.content}</p>
-                  <p className="card-text">@{post.postedBy.username}</p>
-                </div>
-              </div>
+            <div className="col-md-6 p-4 " key={post._id}>
+              <PostCard post={post} />
             </div>
           ))}
       </div>
