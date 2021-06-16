@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { useParams } from 'react-router-dom';
 import UserCard from '../components/UserCard';
+import Loading from '../components/Loading';
 
 const PUBLIC_PROFILE = gql`
   query publicProfile($username: String!) {
@@ -30,7 +31,7 @@ const SingleUser = () => {
     },
   });
 
-  if (loading) return <h3 className="p-5 text-center">LOADING...</h3>;
+  if (loading) return <Loading />;
 
   return (
     <div className="m-5 ps-5 pe-5 pu-2 pb-2">

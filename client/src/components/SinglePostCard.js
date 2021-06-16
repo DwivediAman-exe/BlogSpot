@@ -1,5 +1,4 @@
 import Image from './Image';
-import { Link, useHistory } from 'react-router-dom';
 
 var mon = [
   'Jan',
@@ -17,8 +16,6 @@ var mon = [
 ];
 
 const SinglePostCard = ({ post }) => {
-  const history = useHistory();
-
   const { title, image, content, postedBy, updatedAt } = post;
 
   console.log(post);

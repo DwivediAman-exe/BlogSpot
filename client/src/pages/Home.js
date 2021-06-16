@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { GET_ALL_POSTS, TOTAL_POSTS } from '../graphql/queries';
 import PostCard from '../components/PostCard';
 import PostPagination from '../components/PostPagination';
+import Loading from '../components/Loading';
 
 const Home = () => {
   const [page, setPage] = useState(1);
@@ -28,8 +29,8 @@ const Home = () => {
 
   let history = useHistory();
 
-  if (loading)
-    return <p className="p-5 text-center text-warning">LOADING...</p>;
+  if (loading) return <Loading />;
+  // return <p className="p-5 text-center text-warning">LOADING...</p>;
 
   return (
     <div className="container">

@@ -47,7 +47,13 @@ const PrivateRoute = ({ ...rest }) => {
     </div>
   );
 
-  return user ? renderContent() : <LoadingToRedirect path="/login" />;
+  if (user) {
+    return renderContent();
+  } else {
+    return <LoadingToRedirect path="/login" />;
+  }
+
+  // return user ? renderContent() : <LoadingToRedirect path="/login" />;
 };
 
 export default PrivateRoute;

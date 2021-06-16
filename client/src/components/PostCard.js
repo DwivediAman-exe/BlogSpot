@@ -36,7 +36,7 @@ const PostCard = ({
           <h5 class="card-title text-dark fw-bold text-uppercase ">{title}</h5>
         </Link>
         <Image image={image} />
-        <p className="ps-3 pt-2 fw-light">
+        <p className="ps-3 pt-4 fw-light">
           {content.substr(0, 50)}...
           <small className="fw-bold">
             <Link to={`/post/${post._id}`}> Read more</Link>
