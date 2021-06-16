@@ -20,7 +20,7 @@ const UserCard = ({ user }) => {
   const { username, images, about, createdAt } = user;
   return (
     <div
-      className="card text-center hover-shadow p-1 m-1"
+      className="card text-center hover-shadow p-1 m-1 singleuser"
       style={{
         minHeight: '300px',
       }}

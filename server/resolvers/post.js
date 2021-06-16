@@ -25,7 +25,7 @@ const postCreate = async (parent, args, { req }) => {
 // queries
 const allPosts = async (parent, args) => {
   const currentPage = args.page || 1;
-  const perPage = 3;
+  const perPage = 2;
 
   return await Post.find({})
     .skip((currentPage - 1) * perPage)
