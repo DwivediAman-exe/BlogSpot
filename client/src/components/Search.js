@@ -17,7 +17,7 @@ const Search = () => {
         type="search"
         className="form-control"
         aria-label="Search"
-        placeholder="Search Post"
+        placeholder="Search a post..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
