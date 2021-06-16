@@ -9,3 +9,13 @@ body {
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 0px;
 }
+
+.singlepost {
+  border-top-left-radius: 90px;
+  border-top-right-radius: 90px;
+}
+
+.alignment {
+  text-align: justify;
+  letter-spacing: 0.01rem;
+}
