@@ -4,7 +4,7 @@ const { ObjectId } = mongoose.Schema;
 
 const postSchema = new mongoose.Schema(
   {
-    title: { type: String, required: 'Content is required' },
+    title: { type: String, required: 'Content is required', text: true },
     content: { type: String, required: 'Content is required' },
     image: {
       url: {

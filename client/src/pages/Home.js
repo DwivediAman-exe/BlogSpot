@@ -28,11 +28,12 @@ const Home = () => {
 
   let history = useHistory();
 
-  if (loading) return <p className="p-5 text-center">LOADING...</p>;
+  if (loading)
+    return <p className="p-5 text-center text-warning">LOADING...</p>;
 
   return (
     <div className="container">
-      <div className="row p-5 child">
+      <div className="row p-5">
         {data &&
           data.allPosts.map((post) => (
             <div className="col-md-6 p-4 " key={post._id}>

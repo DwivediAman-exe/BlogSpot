@@ -19,6 +19,7 @@ import Profile from './pages/auth/Profile';
 import SingleUser from './pages/SingleUser';
 import PostUpdate from './pages/Post/PostUpdate';
 import SinglePost from './pages/Post/SinglePost';
+import SearchResults from './components/SearchResults';
 
 const App = () => {
   const { state } = useContext(AuthContext);
@@ -64,6 +65,7 @@ const App = () => {
         />
         <Route exact path="/user/:username" component={SingleUser} />
         <Route exact path="/post/:postid" component={SinglePost} />
+        <Route exact path="/search/:query" component={SearchResults} />
       </Switch>
     </ApolloProvider>
   );

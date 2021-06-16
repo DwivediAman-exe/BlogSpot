@@ -12,13 +12,11 @@ module.exports = gql`
   }
 
   type Query {
+    totalPosts: Int!
     allPosts(page: Int): [Post!]!
     postsByUser: [Post!]!
     singlePost(postId: String!): Post!
-  }
-
-  type Query {
-    totalPosts: Int!
+    search(query: String): [Post]
   }
 
   # input type
