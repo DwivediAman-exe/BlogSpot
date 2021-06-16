@@ -6,10 +6,9 @@ import GridLoader from 'react-spinners/GridLoader';
 // Can be a string as well. Need to ensure each key-value pair ends with ;
 const override = css`
   display: block;
-  margin: 5rem auto;
+  margin: 3rem auto;
   border-color: black;
 `;
-
 const LoadingToRedirect = ({ path }) => {
   const [count, setCount] = useState(5);
   const [loading, setLoading] = useState(true);
@@ -27,9 +26,10 @@ const LoadingToRedirect = ({ path }) => {
   }, [count]);
 
   return (
-    <div className="container mt-4 text-center text-warning">
+    <div className="container p-5 text-center text-warning">
       <GridLoader color={color} loading={loading} css={override} size={30} />
-      <h3 mt-3>Redirecting ...</h3>
+      <h3 className="p-2 text-danger">Unauthorised Access !!</h3>
+      <h3 className="p-3 text-danger">Redirecting User in {count} sec...</h3>
     </div>
   );
 };
