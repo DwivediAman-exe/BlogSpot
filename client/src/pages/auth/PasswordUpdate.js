@@ -1,4 +1,4 @@
-import { useState, Fragment } from 'react';
+import { useState } from 'react';
 import { auth } from '../../firebase';
 import { toast } from 'react-toastify';
 import AuthForm from '../../components/forms/AuthForm';

@@ -89,7 +89,7 @@ const PostUpdate = () => {
         className="btn btn-primary btn-rounded btn-raised btn-lg mt-3 mb-4 fs-7"
         disabled={!content || !title || loading}
       >
-        Submit Post
+        Update Post
       </button>
     </form>
   );

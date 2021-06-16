@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../context/authContext';
 import { useMutation } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 import AuthForm from '../../components/forms/AuthForm';
 import { USER_CREATE } from '../../graphql/mutations';
 

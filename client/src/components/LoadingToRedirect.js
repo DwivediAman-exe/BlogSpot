@@ -9,6 +9,7 @@ const override = css`
   margin: 5rem auto;
   border-color: black;
 `;
+
 const LoadingToRedirect = ({ path }) => {
   const [count, setCount] = useState(5);
   const [loading, setLoading] = useState(true);

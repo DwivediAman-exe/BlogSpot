@@ -24,7 +24,7 @@ const PostCard = ({
 }) => {
   const history = useHistory();
 
-  const { title, image, postedBy, updatedAt } = post;
+  const { title, image, postedBy, updatedAt, content } = post;
 
   return (
     <div
@@ -36,15 +36,21 @@ const PostCard = ({
           <h5 class="card-title text-dark fw-bold text-uppercase ">{title}</h5>
         </Link>
         <Image image={image} />
+        <p className="ps-3 pt-2 fw-light">
+          {content.substr(0, 50)}...
+          <small className="fw-bold">
+            <Link to={`/post/${post._id}`}> Read more</Link>
+          </small>
+        </p>
       </div>
       <div class="card-footer">
-        <small className="fw-bolder float-start" style={{ color: '#78909C' }}>
-          Updated : {updatedAt.split('T')[0].split('-')[2]}
+        <small className="float-start" style={{ color: '#78909C' }}>
+          Updated: {updatedAt.split('T')[0].split('-')[2]}
           {mon[updatedAt.split('T')[0].split('-')[1].replace(/^0+/, '')]}
           {','}
           {updatedAt.split('T')[0].split('-')[0]}
         </small>
-        <small className="fw-bolder float-end" style={{ color: '#78909C' }}>
+        <small className="float-end fw-bold" style={{ color: '#78909C' }}>
           - @{postedBy.username}
         </small>
       </div>

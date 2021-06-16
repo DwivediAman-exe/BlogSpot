@@ -23,8 +23,8 @@ const Nav = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-info p-2 fs-5">
       <div className="container-fluid">
-        <Link className="navbar-brand pe-3 fs-3" to="/">
-          SocialConnect
+        <Link className="navbar-brand pe-2 mb-1 fs-3" to="/">
+          Bloggerrr
         </Link>
         <button
           className="navbar-toggler"
@@ -38,7 +38,7 @@ const Nav = () => {
           <i className="fas fa-bars"></i>
         </button>
         <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav me-auto mb-1 mb-lg-0">
             <li className="nav-item">
               <Link className="nav-link" to="/users">
                 Users

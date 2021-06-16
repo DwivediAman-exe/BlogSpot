@@ -1,4 +1,4 @@
-import { Fragment, useContext } from 'react';
+import { useContext } from 'react';
 import Resizer from 'react-image-file-resizer';
 import axios from 'axios';
 import Image from './Image';
