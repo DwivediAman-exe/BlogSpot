@@ -2,6 +2,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { auth } from 'firebase';
 import { AuthContext } from '../context/authContext';
 import { useContext, Fragment } from 'react';
+import Search from './Search';
 
 const Nav = () => {
   const { state, dispatch } = useContext(AuthContext);
@@ -81,21 +82,9 @@ const Nav = () => {
               </Fragment>
             )}
           </ul>
-          <form className="d-flex input-group w-auto pe-5">
-            <input
-              type="search"
-              className="form-control"
-              aria-label="Search"
-              placeholder="Search Post"
-            />
-            <button
-              className="btn btn-dark"
-              type="button"
-              data-mdb-ripple-color="dark"
-            >
-              <i class="fas fa-search" />
-            </button>
-          </form>
+          <div>
+            <Search />
+          </div>
         </div>
       </div>
     </nav>
