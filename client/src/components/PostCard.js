@@ -24,15 +24,17 @@ const PostCard = ({
 }) => {
   const history = useHistory();
 
-  const { title, image, content, postedBy, updatedAt } = post;
+  const { title, image, postedBy, updatedAt } = post;
 
   return (
     <div
-      className="card p-3 m-3 hover-shadow bg-post text-dark"
+      className="card p-3 m-3 hover-shadow bg-post "
       style={{ minHeight: '380px' }}
     >
       <div class="card-body text-start">
-        <h5 class="card-title text-uppercase">{title}</h5>
+        <Link to={`/post/${post._id}`}>
+          <h5 class="card-title text-dark fw-bold text-uppercase ">{title}</h5>
+        </Link>
         <Image image={image} />
       </div>
       <div class="card-footer">
