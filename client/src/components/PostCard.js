@@ -33,7 +33,9 @@ const PostCard = ({
     >
       <div class="card-body text-start">
         <Link to={`/post/${post._id}`}>
-          <h5 class="card-title text-dark fs-4 ps-2">{title}</h5>
+          <h5 class="card-title text-dark fs-4 ps-2 lh-sm">
+            <i class="fas fa-circle-notch"></i> {title}
+          </h5>
         </Link>
         <Image image={image} />
         <p className="fw-bold ps-2 pt-3 fw-light">
@@ -45,13 +47,14 @@ const PostCard = ({
       </div>
       <div class="card-footer">
         <small className="float-start" style={{ color: '#78909C' }}>
-          Updated: {updatedAt.split('T')[0].split('-')[2]}
+          <i class="fas fa-history"></i> Updated:{' '}
+          {updatedAt.split('T')[0].split('-')[2]}
           {mon[updatedAt.split('T')[0].split('-')[1].replace(/^0+/, '')]}
-          {','}
+          {', '}
           {updatedAt.split('T')[0].split('-')[0]}
         </small>
         <small className="float-end fw-bold" style={{ color: '#78909C' }}>
-          - @{postedBy.username}
+          <i class="fas fa-user-edit"></i> {postedBy.username}
         </small>
       </div>
       {showDeleteButton && showUpdateButton && (

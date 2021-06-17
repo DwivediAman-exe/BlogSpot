@@ -34,7 +34,7 @@ const UserCard = ({ user }) => {
         </small>
         <br />
         <small className="float-end p-2 fw-light" style={{ color: 'gray' }}>
-          Joined{' - '}
+          <i class="fas fa-user-clock"></i> Joined{' - '}
           {mon[createdAt.split('T')[0].split('-')[1].replace(/^0+/, '')]}
           {','}
           {createdAt.split('T')[0].split('-')[0]}

@@ -56,12 +56,13 @@ const UserProfile = ({
           onChange={handleChange}
           className="form-control ps-3 pt-1 pb-1"
           placeholder="About"
+          maxLength="60"
           disabled={loading}
           style={{ borderBottom: '1px solid gray' }}
         />
       </div>
       <button
-        className="btn btn-primary btn-rounded btn-raised btn-lg mt-3 mb-4 fs-7"
+        className="btn btn-primary btn-rounded btn-raised btn-lg mt-3 mb-5 fs-7"
         disabled={!email || loading}
       >
         Update Details

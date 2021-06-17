@@ -1,12 +1,16 @@
 body {
-  letter-spacing: 0.08rem;
+  letter-spacing: 0.02rem;
+}
+.homebg {
+  background-color: rgba(245, 242, 239, 0.322);
 }
 .bg-post {
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
   border-bottom-left-radius: 25px;
-  border-bottom-right-radius: 0;
+  border-bottom-right-radius: 25px;
   border-left: 2px solid rgb(160, 143, 143);
+  border-bottom: 2px solid rgb(160, 143, 143);
 }
 .singleuser {
   border-top-left-radius: 10px;

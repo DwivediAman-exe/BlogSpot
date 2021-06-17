@@ -33,17 +33,21 @@ const Home = () => {
   // return <p className="p-5 text-center text-warning">LOADING...</p>;
 
   return (
-    <div className="container">
-      <div className="row p-5">
-        {data &&
-          data.allPosts.map((post) => (
-            <div className="col-md-6 p-4 " key={post._id}>
-              <PostCard post={post} />
-            </div>
-          ))}
-      </div>
-      <PostPagination page={page} setPage={setPage} postCount={postCount} />
-      <hr />
+    <div className="homebg">
+      <div className="container">
+        <h1 className="text-center p-5 pb-1">
+          <i class="far fa-newspaper text-warning"></i> Latest Blogs
+        </h1>
+        <div className="row p-5 pt-3 pb-2">
+          {data &&
+            data.allPosts.map((post) => (
+              <div className="col-md-6 p-4 pb-3 " key={post._id}>
+                <PostCard post={post} />
+              </div>
+            ))}
+        </div>
+        <PostPagination page={page} setPage={setPage} postCount={postCount} />
+        {/* <hr />
       {JSON.stringify(posts)}
       <hr />
       {JSON.stringify(state.user)}
@@ -52,7 +56,8 @@ const Home = () => {
         change user name
       </button>
       <hr />
-      {JSON.stringify(history)}
+      {JSON.stringify(history)} */}
+      </div>
     </div>
   );
 };

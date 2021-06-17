@@ -23,11 +23,11 @@ const PUBLIC_PROFILE = gql`
 `;
 
 const SingleUser = () => {
-  let params = useParams();
+  let { username } = useParams();
 
   const { loading, data } = useQuery(PUBLIC_PROFILE, {
     variables: {
-      username: params.username,
+      username: username,
     },
   });
 

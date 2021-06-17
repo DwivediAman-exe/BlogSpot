@@ -23,8 +23,8 @@ const Nav = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-info p-2 fs-5">
       <div className="container-fluid">
-        <Link className="navbar-brand pe-2 mb-1 fs-3" to="/">
-          Bloggerrr
+        <Link className="navbar-brand pe-3 mb-1  fs-3" to="/">
+          <i class="fas fa-mail-bulk ms-2 me-2 fs-2"></i> BlogSpot
         </Link>
         <button
           className="navbar-toggler"
@@ -38,26 +38,26 @@ const Nav = () => {
           <i className="fas fa-bars"></i>
         </button>
         <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-          <ul className="navbar-nav me-auto mb-1 mb-lg-0">
+          <ul className="navbar-nav me-auto mb-1 mb-lg-0 ">
             <li className="nav-item">
-              <Link className="nav-link" to="/users">
-                Users
+              <Link className="nav-link me-2" to="/users">
+                <i class="fas fa-user-friends fs-4 "></i> Members
               </Link>
             </li>
             {!user && (
               <Fragment>
                 <li className="nav-item">
                   <Link
-                    className="nav-link me-1"
+                    className="nav-link me-2"
                     aria-current="page"
                     to="/login"
                   >
-                    LogIn
+                    <i class="fas fa-user-check"></i> LogIn
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link" to="/register">
-                    Register
+                    <i class="fas fa-user-plus"></i> Register
                   </Link>
                 </li>
               </Fragment>
@@ -66,6 +66,7 @@ const Nav = () => {
               <Fragment>
                 <li className="nav-item">
                   <Link className="nav-link" to="/profile">
+                    <i class="fas fa-portrait"></i>{' '}
                     {user && user.email.split('@')[0]}
                   </Link>
                 </li>
@@ -76,7 +77,7 @@ const Nav = () => {
                     className="nav-item 
 							nav-link"
                   >
-                    Logout
+                    <i class="fas fa-sign-out-alt"></i> Logout
                   </a>
                 </li>
               </Fragment>

@@ -31,9 +31,11 @@ const Register = () => {
   return (
     <div className="container mt-4">
       {loading ? (
-        <h4 className="text-warning">Loading...</h4>
+        <h4 className="text-warning text-center">Loading...</h4>
       ) : (
-        <h1 className="text-center">Register</h1>
+        <h1 className="text-center">
+          <i class="fas fa-user-plus text-success"></i> Register
+        </h1>
       )}
       <AuthForm
         email={email}

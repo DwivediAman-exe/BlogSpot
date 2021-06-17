@@ -25,8 +25,8 @@ const PostPagination = ({ page, setPage, postCount }) => {
 
   return (
     <nav>
-      <ul className="pagination  justify-content-center p-5">
-        <li class="page-item">
+      <ul className="pagination  justify-content-center pt-2 pb-3">
+        <li class="page-item ">
           <Link
             onClick={() => setPage(1)}
             className={`page-link mt-1 ${page === 1 && 'disabled'}`}

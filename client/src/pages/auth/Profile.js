@@ -65,7 +65,9 @@ const Profile = () => {
           {loading ? (
             <h4 className="text-warning text-center">Loading...</h4>
           ) : (
-            <h2 className="text-danger text-center">Profile</h2>
+            <h2 className="text-danger text-center">
+              <i class="fas fa-id-badge text-warning "></i> Profile
+            </h2>
           )}
         </div>
         <FileUpload

@@ -79,9 +79,11 @@ const Login = () => {
   return (
     <div className="container mt-4">
       {loading ? (
-        <h4 className="text-warning">Loading...</h4>
+        <h4 className="text-warning text-center">Loading...</h4>
       ) : (
-        <h1 className="text-center">Log In</h1>
+        <h1 className="text-center">
+          <i class="fas fa-user-check text-success"></i> Log In
+        </h1>
       )}
       <AuthForm
         email={email}
@@ -92,8 +94,11 @@ const Login = () => {
         setPassword={setPassword}
         showPasswordInput={true}
       />
-      <Link className="text-warning float-end" to="/password/forgot">
-        Forgot Password..?
+      <Link
+        className="text-warning float-end text-decoration-underline"
+        to="/password/forgot"
+      >
+        Forgot Your Password..?
       </Link>
       <h4>OR</h4>
       <button

@@ -86,7 +86,7 @@ const PostUpdate = () => {
         />
       </div>
       <button
-        className="btn btn-primary btn-rounded btn-raised btn-lg mt-3 mb-4 fs-7"
+        className="btn btn-primary btn-rounded btn-raised btn-lg mt-3 mb-5 fs-7"
         disabled={!content || !title || loading}
       >
         Update Post
@@ -99,7 +99,9 @@ const PostUpdate = () => {
       {loading ? (
         <h4 className="text-warning text-center ">Loading...</h4>
       ) : (
-        <h2 className="text-center text-danger">Update Post</h2>
+        <h2 className="text-center text-danger">
+          <i class="fas fa-edit text-warning"></i> Update Post
+        </h2>
       )}
       <div>
         <FileUpload

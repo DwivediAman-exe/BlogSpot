@@ -14,22 +14,25 @@ const PrivateRoute = ({ ...rest }) => {
   }, [state.user]);
 
   const navLinks = () => (
-    <nav className="container m-5 ps-5 pe-5">
+    <nav className="container m-3 ps-4">
       <ul className="nav flex-column">
-        <h2 className="text-warning mb-4">Dashboard</h2>
-        <li className="nav-item">
-          <Link className="nav-link" to="/profile">
-            Profile
+        <h2 className="text-warning mb-5">
+          <i class="fas fa-user-cog fs-1"></i> Dashboard
+        </h2>
+        <li className="nav-item pb-2">
+          <Link className="nav-link fs-4" to="/profile">
+            <i class="fas fa-id-badge text-warning "></i> Profile
           </Link>
         </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/password/update">
-            Password
+
+        <li className="nav-item pb-2">
+          <Link className="nav-link fs-4" to="/post/create">
+            <i class="fas fa-copy text-warning"></i> Posts
           </Link>
         </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/post/create">
-            Post
+        <li className="nav-item pb-2">
+          <Link className="nav-link fs-4" to="/password/update">
+            <i class="fas fa-unlock-alt text-warning"></i> Password
           </Link>
         </li>
       </ul>
@@ -39,21 +42,15 @@ const PrivateRoute = ({ ...rest }) => {
   const renderContent = () => (
     <div className="container-fluid pt-5">
       <div className="row">
-        <div className="col-md-4 pe-5">{navLinks()}</div>
-        <div className="col-md-8">
+        <div className="col-md-3 pe-5">{navLinks()}</div>
+        <div className="col-md-9">
           <Route {...rest} />
         </div>
       </div>
     </div>
   );
 
-  if (user) {
-    return renderContent();
-  } else {
-    return <LoadingToRedirect path="/login" />;
-  }
-
-  // return user ? renderContent() : <LoadingToRedirect path="/login" />;
+  return user ? renderContent() : <LoadingToRedirect path="/login" />;
 };
 
 export default PrivateRoute;

@@ -21,6 +21,7 @@ import PostUpdate from './pages/Post/PostUpdate';
 import SinglePost from './pages/Post/SinglePost';
 import SearchResults from './components/SearchResults';
 import Lost from './pages/Lost';
+import Footer from './components/Footer';
 
 const App = () => {
   const { state } = useContext(AuthContext);
@@ -69,6 +70,7 @@ const App = () => {
         <Route exact path="/search/:query" component={SearchResults} />
         <Route exact path="*" component={Lost} />
       </Switch>
+      <Footer />
     </ApolloProvider>
   );
 };

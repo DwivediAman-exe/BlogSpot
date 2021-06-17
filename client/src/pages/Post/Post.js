@@ -85,7 +85,7 @@ const Post = () => {
           onChange={handleChange}
           className="form-control ps-3 pt-1 pb-1"
           placeholder="Create a eye-catching Title ! (max-length : 70 char)"
-          maxLength="70"
+          maxLength="80"
           autoComplete="off"
           disabled={loading}
           style={{ borderBottom: '1px solid gray' }}
@@ -116,11 +116,13 @@ const Post = () => {
   );
 
   return (
-    <div className="container mt-4">
+    <div className="container ps-3 pe-5 pu-3">
       {loading ? (
         <h4 className="text-warning text-center ">Loading...</h4>
       ) : (
-        <h2 className="text-center text-danger">Create Post</h2>
+        <h2 className="text-center text-danger">
+          <i class="fas fa-copy text-warning"></i> Create Post
+        </h2>
       )}
       <div>
         <FileUpload
@@ -132,7 +134,9 @@ const Post = () => {
         />
         {createForm()}
         <div className="row p-4">
-          <h2 className="text-center text-danger">Your Posts</h2>
+          <h2 className="text-center text-danger">
+            <i class="fas fa-clipboard text-warning"></i> Your Posts
+          </h2>
           {posts &&
             posts.postsByUser.map((post) => (
               <div className="col-md-6 pt-2 pb-2 mb-2" key={post._id}>

@@ -28,7 +28,9 @@ const PasswordUpdate = () => {
       {loading ? (
         <h4 className="text-warning text-center ">Loading...</h4>
       ) : (
-        <h2 className="text-center text-danger">Update Password</h2>
+        <h2 className="text-center text-danger">
+          <i class="fas fa-unlock-alt text-warning"></i> Update Password
+        </h2>
       )}
       <AuthForm
         password={password}

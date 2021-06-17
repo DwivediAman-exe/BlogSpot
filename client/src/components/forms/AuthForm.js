@@ -21,7 +21,7 @@ const AuthForm = ({
           onChange={(e) => setEmail(e.target.value)}
           className="form-control fs-6 ps-3 pt-1 pb-1"
           disabled={loading}
-          style={{ borderBottom: '1px solid yellow' }}
+          style={{ borderBottom: '2px solid gray', width: '100%' }}
         />
       </div>
     )}
@@ -37,7 +37,7 @@ const AuthForm = ({
           onChange={(e) => setPassword(e.target.value)}
           className="form-control fs-6 ps-3 pt-1 pb-1"
           disabled={loading}
-          style={{ borderBottom: '1px solid yellow' }}
+          style={{ borderBottom: '2px solid gray', width: '100%' }}
         />
       </div>
     )}
@@ -45,7 +45,7 @@ const AuthForm = ({
       className="btn btn-primary btn-rounded btn-raised btn-lg mt-3 mb-4 fs-7"
       disabled={loading}
     >
-      Submit
+      <i class="fas fa-check pe-2"></i> Submit
     </button>
   </form>
 );
