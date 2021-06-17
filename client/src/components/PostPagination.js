@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 const PostPagination = ({ page, setPage, postCount }) => {
   let totalPages;
   const pagination = () => {
-    totalPages = Math.ceil(postCount && postCount.totalPosts / 4);
+    totalPages = Math.ceil(postCount && postCount.totalPosts / 6);
     if (totalPages > 8) totalPages = 8;
     // console.log(totalPages);
 
@@ -24,7 +24,7 @@ const PostPagination = ({ page, setPage, postCount }) => {
   };
 
   return (
-    <nav>
+    <nav className="mb-5">
       <ul className="pagination  justify-content-center pt-2 pb-3">
         <li class="page-item ">
           <Link

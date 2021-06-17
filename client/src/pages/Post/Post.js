@@ -85,6 +85,7 @@ const Post = () => {
           onChange={handleChange}
           className="form-control ps-3 pt-1 pb-1"
           placeholder="Create a eye-catching Title ! (max-length : 70 char)"
+          minLength="10"
           maxLength="80"
           autoComplete="off"
           disabled={loading}
@@ -102,6 +103,7 @@ const Post = () => {
           disabled={loading}
           autoComplete="off"
           rows="10"
+          minLength="20"
           maxLength="1000"
           style={{ borderBottom: '1px solid gray' }}
         />

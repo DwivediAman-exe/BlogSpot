@@ -35,7 +35,7 @@ const Login = () => {
 
           // send user info to our server mongodb to either update/create
           userCreate();
-          history.push('/password/update');
+          history.push('/post/create');
         });
     } catch (error) {
       console.log('login error', error);
@@ -56,7 +56,7 @@ const Login = () => {
 
       // send user info to our server mongodb to either update/create
       userCreate();
-      history.push('/password/update');
+      history.push('/post/create');
     });
   };
 
@@ -72,7 +72,7 @@ const Login = () => {
 
       // send user info to our server mongodb to either update/create
       userCreate();
-      history.push('/password/update');
+      history.push('/post/create');
     });
   };
 

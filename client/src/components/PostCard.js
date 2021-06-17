@@ -28,7 +28,7 @@ const PostCard = ({
 
   return (
     <div
-      className="card p-3 m-2 hover-shadow bg-post "
+      className="card p-3  m-2 hover-shadow bg-post "
       style={{ height: '95%' }}
     >
       <div class="card-body text-start">
