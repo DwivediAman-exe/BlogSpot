@@ -5,7 +5,7 @@ var firebaseConfig = {
   authDomain: 'gqlsocialapp.firebaseapp.com',
   projectId: 'gqlsocialapp',
   storageBucket: 'gqlsocialapp.appspot.com',
-  // messagingSenderId: '540209891173',
+  messagingSenderId: '540209891173',
   appId: '1:540209891173:web:e4d5d848e57465aa83438c',
   measurementId: 'G-PJWJ6G8VDY',
 };
