@@ -26,11 +26,11 @@ const Image = ({
       c
       style={{
         height: '130px',
-        width: '140px',
+        width: '150px',
         maxHeight: '130px',
-        maxWidth: '140px',
+        maxWidth: '150px',
         objectFit: 'cover',
-        margin: '2px',
+        margin: '2x',
         borderRadius: '20px',
       }}
       className="img-thumbnail m-3 shadow-2-strong img-fluid"

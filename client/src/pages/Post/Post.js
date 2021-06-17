@@ -135,7 +135,7 @@ const Post = () => {
           <h2 className="text-center text-danger">Your Posts</h2>
           {posts &&
             posts.postsByUser.map((post) => (
-              <div className="col-md-6 pt-2" key={post._id}>
+              <div className="col-md-6 pt-2 pb-2 mb-2" key={post._id}>
                 <PostCard
                   post={post}
                   showUpdateButton={true}

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 const PostPagination = ({ page, setPage, postCount }) => {
   let totalPages;
   const pagination = () => {
-    totalPages = Math.ceil(postCount && postCount.totalPosts / 2);
+    totalPages = Math.ceil(postCount && postCount.totalPosts / 4);
     if (totalPages > 8) totalPages = 8;
     // console.log(totalPages);
 

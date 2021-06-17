@@ -28,8 +28,7 @@ const LoadingToRedirect = ({ path }) => {
   return (
     <div className="container p-5 text-center text-warning">
       <GridLoader color={color} loading={loading} css={override} size={30} />
-      <h3 className="p-2 text-danger">Unauthorised Access !!</h3>
-      <h3 className="p-3 text-danger">Redirecting User in {count} sec...</h3>
+      <h3 className="p-3 text-danger">Loading {count} sec...</h3>
     </div>
   );
 };

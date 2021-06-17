@@ -21,9 +21,7 @@ const UserCard = ({ user }) => {
   return (
     <div
       className="card text-center hover-shadow p-1 m-1 singleuser"
-      style={{
-        minHeight: '300px',
-      }}
+      style={{ height: '100%' }}
     >
       <div className="card-body">
         <Image image={images[0]} />

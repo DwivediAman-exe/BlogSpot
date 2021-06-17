@@ -29,10 +29,10 @@ const SinglePostCard = ({ post }) => {
         <h5 className="card-title fs-2 ps-5 pe-5 pt-4 text-dark fw-bold text-uppercase ">
           {title}
         </h5>
-        <div className="m-5">
+        <div className="m-4">
           <Image image={image} largedisplay={true} />
         </div>
-        <p className="p-5 fw-normal fs-4 alignment">{content}</p>
+        <p className="ps-5 pe-5 pt-2 fw-normal fs-4 alignment">{content}</p>
       </div>
       <div class="card-footer">
         <h6 className="float-start pt-4 ps-3">

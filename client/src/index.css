@@ -1,15 +1,13 @@
 body {
   letter-spacing: 0.08rem;
 }
-
 .bg-post {
-  background-color: rgba(240, 244, 245, 0.568);
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 0px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 0;
+  border-left: 2px solid rgb(160, 143, 143);
 }
-
 .singleuser {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -20,12 +18,12 @@ body {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 }
-
 .alignment {
   text-align: justify;
-  letter-spacing: 0.01rem;
+  letter-spacing: 0.001rem;
+  word-spacing: 0.08rem;
 }
-
 .activepage {
   background-color: rgb(65, 175, 248);
+  border-radius: 10px;
 }

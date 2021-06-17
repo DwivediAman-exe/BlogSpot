@@ -28,15 +28,15 @@ const PostCard = ({
 
   return (
     <div
-      className="card p-3 m-3 hover-shadow bg-post "
-      style={{ minHeight: '380px' }}
+      className="card p-3 m-2 hover-shadow bg-post "
+      style={{ height: '95%' }}
     >
       <div class="card-body text-start">
         <Link to={`/post/${post._id}`}>
-          <h5 class="card-title text-dark fw-bold text-uppercase ">{title}</h5>
+          <h5 class="card-title text-dark fs-4 ps-2">{title}</h5>
         </Link>
         <Image image={image} />
-        <p className="ps-3 pt-4 fw-light">
+        <p className="fw-bold ps-2 pt-3 fw-light">
           {content.substr(0, 50)}...
           <small className="fw-bold">
             <Link to={`/post/${post._id}`}> Read more</Link>
