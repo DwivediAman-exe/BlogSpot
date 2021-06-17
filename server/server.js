@@ -1,35 +1,22 @@
+require('dotenv').config();
 const express = require('express');
-const { ApolloServer, gql } = require('apollo-server-express');
 const http = require('http');
 const path = require('path');
+const cors = require('cors');
+const { ApolloServer } = require('apollo-server-express');
 const {
   fileLoader,
   mergeTypes,
   mergeResolvers,
 } = require('merge-graphql-schemas');
-const { authCheckMiddleware } = require('./helpers/auth');
-const cors = require('cors');
-const mongoose = require('mongoose');
+const db = require('./db');
 const cloudinary = require('cloudinary');
-require('dotenv').config();
+const { authCheckMiddleware } = require('./helpers/auth');
 
 const app = express();
 app.use(cors());
 app.use(express.json({ limit: '5mb' }));
 
-const db = async () => {
-  try {
-    const success = await mongoose.connect(process.env.DATABASE_CLOUD, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: false,
-      useCreateIndex: true,
-    });
-    console.log('Database Connected');
-  } catch (err) {
-    console.log('Database Connection Error', err);
-  }
-};
 db();
 
 app.get('/rest', authCheckMiddleware, (req, res) => {
@@ -71,7 +58,6 @@ app.post('/removeimage', authCheckMiddleware, (req, res) => {
 });
 
 const typeDefs = mergeTypes(fileLoader(path.join(__dirname, './typeDefs')));
-
 const resolvers = mergeResolvers(
   fileLoader(path.join(__dirname, './resolvers'))
 );
@@ -83,7 +69,6 @@ const apolloServer = new ApolloServer({
 });
 
 apolloServer.applyMiddleware({ app });
-
 const httpserver = http.createServer(app);
 
 app.listen(process.env.PORT, () => {

@@ -27,7 +27,7 @@ const SinglePostCard = ({ post }) => {
     >
       <div className="card-body text-center m-4 lh-base">
         <h5 className="card-title fs-2 ps-5 pe-5 pt-3 text-dark fw-bold text-uppercase ">
-          <i class="fas fa-braille pe-3"></i> {title}
+          <i class="fas fa-braille pe-3 text-warning"></i> {title}
         </h5>
         <div className="m-4">
           <Image image={image} largedisplay={true} />

@@ -34,7 +34,7 @@ const PostCard = ({
       <div class="card-body text-start">
         <Link to={`/post/${post._id}`}>
           <h5 class="card-title text-dark fs-4 ps-2 lh-sm">
-            <i class="fas fa-circle-notch"></i> {title}
+            <i class="fas fa-circle-notch text-info"></i> {title}
           </h5>
         </Link>
         <Image image={image} />
