@@ -150,6 +150,11 @@ const Post = () => {
                 />
               </div>
             ))}
+          {!posts && (
+            <p className="text-center m-3 mb-5 text-primary fw-normal">
+              You have not created any Posts yet...
+            </p>
+          )}
         </div>
       </div>
     </div>
