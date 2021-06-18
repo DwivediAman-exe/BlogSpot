@@ -1,4 +1,4 @@
-# Realtime_Code_Sharing 
+# BLOG_SPOT
 
 ## Link - NONE
 
@@ -34,7 +34,8 @@
 
 # App
 
+## Registeration Page Demo
 ![blogspot2](https://user-images.githubusercontent.com/57112545/122531515-34a8eb00-d03d-11eb-9959-316ea9c40580.png)
 
-
+## Main Page Demo
 ![blogspot1](https://user-images.githubusercontent.com/57112545/122531498-307ccd80-d03d-11eb-8b12-9333374b4db7.png)
