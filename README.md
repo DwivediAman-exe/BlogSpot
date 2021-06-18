@@ -14,7 +14,11 @@
 
 > Also search for particular post/posts.
 
-> Loged In users can create, update, post, delete Blogs.
+> Loged In users can create, update, post, delete Blogs. 
+
+> Loged In users can update password.
+
+> Also forget password option is available.
 
 # Frontend 
 
