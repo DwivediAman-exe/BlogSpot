@@ -34,14 +34,20 @@ const PostCard = ({
       <div class="card-body text-start">
         <Link to={`/post/${post._id}`}>
           <h5 class="card-title text-dark fs-4 ps-2 lh-sm">
-            <i class="fas fa-circle-notch text-info"></i> {title}
+            <small>
+              <i class="fas fa-quote-left text-primary"></i>{' '}
+            </small>
+            {title}
           </h5>
         </Link>
         <Image image={image} />
         <p className="fw-bold ps-2 pt-3 fw-light">
           {content.substr(0, 50)}...
           <small className="fw-bold">
-            <Link to={`/post/${post._id}`}> Read more</Link>
+            <Link to={`/post/${post._id}`} className="text-info">
+              {' '}
+              Read more
+            </Link>
           </small>
         </p>
       </div>

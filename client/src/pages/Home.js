@@ -20,7 +20,7 @@ const Home = () => {
     <div className="homebg">
       <div className="container">
         <h1 className="text-center p-5 pb-1">
-          <i class="far fa-newspaper text-warning"></i> Latest Blogs
+          <i class="fas fa-file-alt text-warning"></i> Latest Blogs
         </h1>
         <div className="row p-4 pt-3 pb-2">
           {data &&

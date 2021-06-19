@@ -33,7 +33,7 @@ const Image = ({
         margin: '2x',
         borderRadius: '20px',
       }}
-      className="img-thumbnail m-3 shadow-2-strong img-fluid"
+      className="img-thumbnail m-3 ms-1 shadow-2-strong img-fluid"
       onClick={() => handleImageRemove(image.public_id)}
     />
   );

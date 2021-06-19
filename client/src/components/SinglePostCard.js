@@ -1,33 +1,27 @@
 import Image from './Image';
-
-var mon = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'June',
-  'July',
-  'Aug',
-  'Sept',
-  'Oct',
-  'Nov',
-  'Dec',
-];
+import { Link } from 'react-router-dom';
 
 const SinglePostCard = ({ post }) => {
   const { title, image, content, postedBy, updatedAt } = post;
-
-  console.log(post);
 
   return (
     <div
       className="card p-2 mt-5 shadow-2-strong singlepost"
       style={{ minHeight: '550px' }}
     >
-      <div className="card-body text-center m-4 lh-base">
-        <h5 className="card-title fs-2 ps-5 pe-5 pt-3 text-dark fw-bold text-uppercase ">
-          <i class="fas fa-braille pe-3 text-warning"></i> {title}
+      <div>
+        <h1>
+          <i class="fas fa-blog float-start text-primary fs-1 mt-3 ms-4"></i>{' '}
+        </h1>
+        <Link to="/">
+          <button className="btn float-end btn btn-rounded  btn-sm mt-1 me-2 fw-bold btn-outline-warning text-primary">
+            Close
+          </button>
+        </Link>
+      </div>
+      <div className="card-body text-center m-4 mt-2 lh-base">
+        <h5 className="card-title fs-2 ps-5 pe-5 pt-1 text-dark fw-bold text-uppercase ">
+          {title}
         </h5>
         <div className="m-4">
           <Image image={image} largedisplay={true} />
@@ -46,7 +40,7 @@ const SinglePostCard = ({ post }) => {
           {updatedAt.split('T')[0].split('-')[0]}
         </h6>
         <div className="float-end mt-3">
-          <h5 className="text-dark">Creator/Editor </h5>
+          <h5 className="text-dark">Editor</h5>
           <h5 className="fw-bolder " style={{ color: '#7D5A50' }}>
             <i class="fas fa-user-edit"></i> @{postedBy.username}
           </h5>
