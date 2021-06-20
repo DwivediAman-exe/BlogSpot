@@ -1,6 +1,6 @@
 # BLOG_SPOT
 
-## Link - NONE
+## Link - none
 
 # Features 
 
@@ -22,7 +22,7 @@
 
 # Frontend 
 
-> React, GraphQL client, apollo-boost, firebase, react-toastify etc.
+> React, GraphQL client, apollo-boost, firebase, context etc.
 
 # Backend 
 
@@ -34,7 +34,7 @@
 
 # To do
 
-> Implement saving post functionality.
+> Implement saving post functionality and like method.
 
 # App
 
