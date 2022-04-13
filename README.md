@@ -4,7 +4,7 @@
 
 # Features 
 
-> Registeration with a valid email.
+> Registration with a valid email.
 
 > Login through Email, Github as well as Google accounts.
  
