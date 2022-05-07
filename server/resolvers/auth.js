@@ -1,16 +1,20 @@
 const { authCheck } = require('../helpers/auth');
 const shortid = require('shortid');
 const User = require('../models/user');
+const { DateTimeResolver } = require('graphql-scalars');
 
+// query to get the profile of the current user
 const profile = async (parent, args, { req, res }) => {
 	const currentUser = await authCheck(req);
 	return await User.findOne({ email: currentUser.email }).exec();
 };
 
+// query to get public profile of a user
 const publicProfile = async (parent, args, { req, res }) => {
 	return await User.findOne({ username: args.username }).exec();
 };
 
+// query to get all profiles
 const allUsers = async (parent, args, { req, res }) =>
 	await User.find({}).exec();
 

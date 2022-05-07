@@ -5,39 +5,40 @@ import UserCard from '../components/UserCard';
 import Loading from '../components/Loading';
 
 const PUBLIC_PROFILE = gql`
-  query publicProfile($username: String!) {
-    publicProfile(username: $username) {
-      _id
-      name
-      email
-      about
-      username
-      images {
-        url
-        public_id
-      }
-      createdAt
-      updatedAt
-    }
-  }
+	query publicProfile($username: String!) {
+		publicProfile(username: $username) {
+			_id
+			name
+			email
+			about
+			username
+			images {
+				url
+				public_id
+			}
+			createdAt
+			updatedAt
+		}
+	}
 `;
 
 const SingleUser = () => {
-  let { username } = useParams();
+	// extracting the username from url using params
+	let { username } = useParams();
 
-  const { loading, data } = useQuery(PUBLIC_PROFILE, {
-    variables: {
-      username: username,
-    },
-  });
+	const { loading, data } = useQuery(PUBLIC_PROFILE, {
+		variables: {
+			username: username,
+		},
+	});
 
-  if (loading) return <Loading />;
+	if (loading) return <Loading />;
 
-  return (
-    <div className="m-5 ps-5 pe-5 pu-2 pb-2">
-      <UserCard user={data.publicProfile} />
-    </div>
-  );
+	return (
+		<div className="m-5 ps-5 pe-5 pu-2 pb-2">
+			<UserCard user={data.publicProfile} />
+		</div>
+	);
 };
 
 export default SingleUser;

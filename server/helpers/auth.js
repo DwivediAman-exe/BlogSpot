@@ -9,6 +9,7 @@ admin.initializeApp({
 
 exports.authCheck = async (req) => {
 	// checking if token is there in headers and then verifyIdToken using firebase auth() methods
+	// middleware for GraphQL
 	try {
 		const currentUser = await admin
 			.auth()
@@ -22,7 +23,7 @@ exports.authCheck = async (req) => {
 };
 
 exports.authCheckMiddleware = (req, res, next) => {
-	// checking if token is there in headers and then verifyIdToken using firebase auth() methods
+	// middleware for cloudinary in Rest endpoint
 	if (req.headers.authtoken) {
 		admin
 			.auth()

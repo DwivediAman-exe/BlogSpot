@@ -30,12 +30,14 @@ app.get('/rest', authCheckMiddleware, (req, res) => {
 	});
 });
 
+// configuring cloudinary
 cloudinary.config({
 	cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
 	api_key: process.env.CLOUDINARY_API_KEY,
 	api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+// for uploading image to cloudinary
 app.post('/uploadimages', authCheckMiddleware, (req, res) => {
 	cloudinary.uploader.upload(
 		req.body.image,
@@ -53,6 +55,7 @@ app.post('/uploadimages', authCheckMiddleware, (req, res) => {
 	);
 });
 
+// for removing image from cloudinary
 app.post('/removeimage', authCheckMiddleware, (req, res) => {
 	let image_id = req.body.public_id;
 
