@@ -24,55 +24,61 @@ import Lost from './pages/Lost';
 import Footer from './components/Footer';
 
 const App = () => {
-  const { state } = useContext(AuthContext);
-  const { user } = state;
+	const { state } = useContext(AuthContext);
+	const { user } = state;
 
-  const client = new ApolloClient({
-    uri: process.env.REACT_APP_GRAPHQL_ENDPOINT,
-    request: (operation) => {
-      operation.setContext({
-        headers: {
-          authtoken: user ? user.token : '',
-        },
-      });
-    },
-  });
+	// making apollo client in frontend and setting up authtoken in headers for requests to our backend
+	const client = new ApolloClient({
+		uri: process.env.REACT_APP_GRAPHQL_ENDPOINT,
+		request: (operation) => {
+			operation.setContext({
+				headers: {
+					authtoken: user ? user.token : '',
+				},
+			});
+		},
+	});
 
-  return (
-    <ApolloProvider client={client}>
-      <Nav />
-      <ToastContainer />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/users" component={Users} />
-        <PublicRoute exact path="/register" component={Register} />
-        <PublicRoute exact path="/login" component={Login} />
-        <Route
-          exact
-          path="/complete-registration"
-          component={CompleteRegistration}
-        />
-        <Route exact path="/password/forgot" component={PasswordForget} />
-        <PrivateRoute
-          exact
-          path="/password/update"
-          component={PasswordUpdate}
-        />
-        <PrivateRoute exact path="/profile" component={Profile} />
-        <PrivateRoute exact path="/post/create" component={Post} />
-        <PrivateRoute
-          exact
-          path="/post/update/:postid"
-          component={PostUpdate}
-        />
-        <Route exact path="/user/:username" component={SingleUser} />
-        <Route exact path="/post/:postid" component={SinglePost} />
-        <Route exact path="/search/:query" component={SearchResults} />
-        <Route exact path="*" component={Lost} />
-      </Switch>
-      <Footer />
-    </ApolloProvider>
-  );
+	return (
+		// passing client as prop so that every page can have access to apollo-client . It is acting as a Wrapper component
+		<ApolloProvider client={client}>
+			<Nav />
+			<ToastContainer />
+			<Switch>
+				<Route exact path="/" component={Home} />
+				<Route exact path="/users" component={Users} />
+				<PublicRoute exact path="/register" component={Register} />
+				<PublicRoute exact path="/login" component={Login} />
+				<Route
+					exact
+					path="/complete-registration"
+					component={CompleteRegistration}
+				/>
+				<Route
+					exact
+					path="/password/forgot"
+					component={PasswordForget}
+				/>
+				<PrivateRoute
+					exact
+					path="/password/update"
+					component={PasswordUpdate}
+				/>
+				<PrivateRoute exact path="/profile" component={Profile} />
+				<PrivateRoute exact path="/post/create" component={Post} />
+				<PrivateRoute
+					exact
+					path="/post/update/:postid"
+					component={PostUpdate}
+				/>
+				<Route exact path="/user/:username" component={SingleUser} />
+				<Route exact path="/post/:postid" component={SinglePost} />
+				<Route exact path="/search/:query" component={SearchResults} />
+				<Route exact path="*" component={Lost} />
+			</Switch>
+			<Footer />
+		</ApolloProvider>
+	);
 };
 
 export default App;
